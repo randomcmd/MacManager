@@ -4,11 +4,11 @@ import java.io.PrintWriter;
 
 public class MacExport {
 
-    public static void saveStringArrayToFile(Object[] localarrayString)
+    public static void saveStringArrayToFile(Object[] localarrayString, String filename)
     {
         try
         {
-            PrintWriter pr = new PrintWriter("file.txt");
+            PrintWriter pr = new PrintWriter(filename);
 
             for (int i=0; i<localarrayString.length ; i++)
             {

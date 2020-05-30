@@ -5,6 +5,7 @@ import MacImport.MacImport;
 import MacValidation.MacValidation;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Main /*extends Application*/ {
 
@@ -35,9 +36,23 @@ public class Main /*extends Application*/ {
         macImport = new MacImport();
         macExport = new MacExport();
 
-        Object[] finalizedStringArray = macValidation.validateListString(macValidation.testStringList()).toArray();
-        macExport.saveStringArrayToFile(finalizedStringArray);
+        Object[][] csvArray = macImport.CSVToArray("sample.csv");
+        String[][] csvArrayString = Arrays.copyOf(csvArray, csvArray.length, String[][].class);
+        LinkedList<String> csvListMACParsed = macImport.parseMACfromArray(csvArrayString);
+
+        Object[] finalizedStringArray = macValidation.validateListString(csvListMACParsed).toArray();
         System.out.println(Arrays.deepToString(finalizedStringArray));
+
+        macExport.saveStringArrayToFile(finalizedStringArray, "macs.txt");
+        macExport.saveStringArrayToFile(macValidation.getListError().toArray(), "macsFAIL.txt");
+
+        //System.out.println(Arrays.deepToString(csvArray));
+        //System.out.println(Arrays.deepToString(csvArrayMACParsed));
+
+        //Object[] finalizedStringArray = macValidation.validateListString(macValidation.testStringList()).;
+        //macExport.saveStringArrayToFile(csvArrayMACParsed, "macs");
+        //macExport.saveStringArrayToFile(macValidation.getListError().toArray(), "macsFAIL");
+        //System.out.println(Arrays.deepToString(csvArrayMACParsed));
     }
 
     /*@Override

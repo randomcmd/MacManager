@@ -23,11 +23,11 @@ public class MacValidation {
 
     public LinkedList<String> validateListString(LinkedList<String> locallistString)
     {
-        return listMacToString(listStringToMac(testStringList()));
+        return listMacToString(listStringToMac(locallistString));
     }
 
     //Create a list of strings for testing;
-    public LinkedList<String> testStringList() {
+    public LinkedList<String> gentestStringList() {
         LinkedList<String> exampleList = new LinkedList<String>();
         exampleList.add("00-14-22-01-23-45 "); //ADDED SPACE
         exampleList.add("1O-14-22-0I-23-45 "); //ADDED SPACE AND CHANGED 1 TO I
@@ -45,6 +45,8 @@ public class MacValidation {
 
         LinkedList<MACAddress> locallistMac = new LinkedList<MACAddress>();
         MACAddressString localMACString;
+        listError = new LinkedList<String>();
+        if (!listError.isEmpty()) listError.clear();
 
         //Goes through all the elements of the local string list
         for (int i = 0; i < locallistString.size(); i++) {
@@ -61,10 +63,12 @@ public class MacValidation {
                     //If MacAdressString could not be converted, try autocorrection and try it again
                     //System.out.println(autoCorrectMacAdress(locallistString.get(i)));
                     localMACString = new MACAddressString(autoCorrectMacAdress(locallistString.get(i)));
-                    //locallistMac.add(localMACString.toAddress());
-                    System.out.println("Parsed after correction: " + locallistMac.get(i).toString());
+                    //System.out.println(autoCorrectMacAdress(locallistString.get(i)));
+                    locallistMac.add(localMACString.toAddress());
+                    System.out.println("Parsed after correction: " + autoCorrectMacAdress(locallistString.get(i)));
                 } catch (Exception f) {
                     //Error message
+                    listError.add(locallistString.get(i));
                     System.out.println("Failed to parse following MAC Adress or it does not exist: " + locallistString.get(i) + " OR " + autoCorrectMacAdress(locallistString.get(i)));
                 }
 
@@ -75,6 +79,10 @@ public class MacValidation {
         return locallistMac;
     }
 
+    public LinkedList<String> getListError()
+    {
+        return listError;
+    }
     //Convert mac list to string list
     private LinkedList<String> listMacToString(LinkedList<MACAddress> locallistMac) {
         LinkedList<String> locallistString;
