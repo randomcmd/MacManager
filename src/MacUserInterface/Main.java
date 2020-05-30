@@ -1,11 +1,16 @@
 package MacUserInterface;
 
+import MacExport.MacExport;
+import MacImport.MacImport;
 import MacValidation.MacValidation;
+
+import java.util.Arrays;
 
 public class Main /*extends Application*/ {
 
     MacValidation macValidation;
-
+    MacImport macImport;
+    MacExport macExport;
     /*  IMPORT:
         - Import CSV and convert to string list
         - Send string list to validation
@@ -27,7 +32,12 @@ public class Main /*extends Application*/ {
 
     public void run() {
         macValidation = new MacValidation();
-        macValidation.test();
+        macImport = new MacImport();
+        macExport = new MacExport();
+
+        Object[] finalizedStringArray = macValidation.validateListString(macValidation.testStringList()).toArray();
+        macExport.saveStringArrayToFile(finalizedStringArray);
+        System.out.println(Arrays.deepToString(finalizedStringArray));
     }
 
     /*@Override

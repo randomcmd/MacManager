@@ -4,7 +4,7 @@ package MacValidation;
 import inet.ipaddr.MACAddressString;
 import inet.ipaddr.mac.MACAddress;
 
-import java.util.*;
+import java.util.LinkedList;
 
 public class MacValidation {
 
@@ -17,23 +17,31 @@ public class MacValidation {
     }
 
     public void test() {
-        System.out.println(Arrays.deepToString(listMacToString(listStringToMac(testStringList())).toArray()));
+        //System.out.println(Arrays.deepToString(listMacToString(listStringToMac(testStringList())).toArray()));
+        //MacExport.saveStringArrayToFile(listMacToString(listStringToMac(testStringList())).toArray());
+    }
+
+    public LinkedList<String> validateListString(LinkedList<String> locallistString)
+    {
+        return listMacToString(listStringToMac(testStringList()));
     }
 
     //Create a list of strings for testing;
     public LinkedList<String> testStringList() {
         LinkedList<String> exampleList = new LinkedList<String>();
-        exampleList.add("10-14-22-01-23-45");
-        exampleList.add("SS00-14-22-0I-23-45");
-        exampleList.add("00-14-22-01-23-45");
-        exampleList.add("00-14-22-01-23-45");
-        exampleList.add("0064-14-2242-01-23-451");
+        exampleList.add("00-14-22-01-23-45 "); //ADDED SPACE
+        exampleList.add("1O-14-22-0I-23-45 "); //ADDED SPACE AND CHANGED 1 TO I
+        exampleList.add("20-14-22-01-23-45S"); //ADDED LETTER
+        exampleList.add("30-14-22-01-23-45S"); //ADDED LETTER
+        exampleList.add("40-14-22-01-23-45");
+        exampleList.add("50-14-22-01-23-45");
+        exampleList.add("60-14-22-01-23-45");
 
         return exampleList;
     }
 
     //Convert string list to mac list
-    public LinkedList<MACAddress> listStringToMac(LinkedList<String> locallistString) {
+    private LinkedList<MACAddress> listStringToMac(LinkedList<String> locallistString) {
 
         LinkedList<MACAddress> locallistMac = new LinkedList<MACAddress>();
         MACAddressString localMACString;
@@ -47,16 +55,17 @@ public class MacValidation {
             try {
                 //Try to convert MACAddressString to MACAddress
                 locallistMac.add(localMACString.toAddress());
-                System.out.println("Parsed: " + locallistMac.get(i).toString());
+                System.out.println("Parsed: " + localMACString);
             } catch (Exception e) {
                 try {
                     //If MacAdressString could not be converted, try autocorrection and try it again
+                    //System.out.println(autoCorrectMacAdress(locallistString.get(i)));
                     localMACString = new MACAddressString(autoCorrectMacAdress(locallistString.get(i)));
-                    locallistMac.add(localMACString.toAddress());
+                    //locallistMac.add(localMACString.toAddress());
                     System.out.println("Parsed after correction: " + locallistMac.get(i).toString());
                 } catch (Exception f) {
                     //Error message
-                    System.out.println("Failed to parse following MAC Adress: " + locallistString.get(i));
+                    System.out.println("Failed to parse following MAC Adress or it does not exist: " + locallistString.get(i) + " OR " + autoCorrectMacAdress(locallistString.get(i)));
                 }
 
             }
@@ -67,7 +76,7 @@ public class MacValidation {
     }
 
     //Convert mac list to string list
-    public LinkedList<String> listMacToString(LinkedList<MACAddress> locallistMac) {
+    private LinkedList<String> listMacToString(LinkedList<MACAddress> locallistMac) {
         LinkedList<String> locallistString;
         locallistString = new LinkedList<String>();
 
@@ -79,10 +88,11 @@ public class MacValidation {
     }
 
     //Replace letters that should be numbers and remove spaces
-    public String autoCorrectMacAdress(String localString) {
+    private String autoCorrectMacAdress(String localString) {
         localString = localString.replace("O", "0");
         localString = localString.replace("I", "1");
         localString = localString.replace(" ", "");
+        //System.out.println("ATTENTION TO THIS FIX: " + localString);
 
         return localString;
     }
