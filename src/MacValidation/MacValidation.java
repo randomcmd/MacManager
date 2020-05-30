@@ -3,6 +3,7 @@ package MacValidation;
 
 import inet.ipaddr.MACAddressString;
 import inet.ipaddr.mac.MACAddress;
+
 import java.util.*;
 
 public class MacValidation {
@@ -11,23 +12,21 @@ public class MacValidation {
     LinkedList<MACAddress> listMac;
     LinkedList<String> listError;
 
-    public MacValidation()
-    {
+    public MacValidation() {
 
     }
-    
-    public void test()
-    {
-        System.out.println(     Arrays.deepToString(    listMacToString(        listStringToMac(        testStringList()        )       ).toArray()      )     );
+
+    public void test() {
+        System.out.println(Arrays.deepToString(listMacToString(listStringToMac(testStringList())).toArray()));
     }
 
     //Create a list of strings for testing;
     public LinkedList<String> testStringList() {
         LinkedList<String> exampleList = new LinkedList<String>();
+        exampleList.add("10-14-22-01-23-45");
+        exampleList.add("SS00-14-22-0I-23-45");
         exampleList.add("00-14-22-01-23-45");
-        exampleList.add("00 -14- 22-0 I-2    3-45");
-        exampleList.add("00-14 -22-01-23-45");
-        exampleList.add("0O-14-22-01-23-45");
+        exampleList.add("00-14-22-01-23-45");
         exampleList.add("0064-14-2242-01-23-451");
 
         return exampleList;
@@ -45,15 +44,11 @@ public class MacValidation {
             //Creating MACAdressString
             localMACString = new MACAddressString(locallistString.get(i));
 
-            try
-            {
+            try {
                 //Try to convert MACAddressString to MACAddress
                 locallistMac.add(localMACString.toAddress());
                 System.out.println("Parsed: " + locallistMac.get(i).toString());
-            }
-
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 try {
                     //If MacAdressString could not be converted, try autocorrection and try it again
                     localMACString = new MACAddressString(autoCorrectMacAdress(locallistString.get(i)));
@@ -72,13 +67,11 @@ public class MacValidation {
     }
 
     //Convert mac list to string list
-    public LinkedList<String> listMacToString(LinkedList<MACAddress> locallistMac)
-    {
+    public LinkedList<String> listMacToString(LinkedList<MACAddress> locallistMac) {
         LinkedList<String> locallistString;
         locallistString = new LinkedList<String>();
 
-        for (int i = 0; i < locallistMac.size(); i++)
-        {
+        for (int i = 0; i < locallistMac.size(); i++) {
             locallistString.add(locallistMac.get(i).toString());
         }
 
