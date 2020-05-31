@@ -1,5 +1,5 @@
 package MacUserInterface;
 
-//Controller of GUI
+//Controller of GUI lul
 public class Controller {
 }
