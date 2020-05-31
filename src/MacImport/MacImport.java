@@ -28,10 +28,10 @@ public class MacImport {
             //Some error logging
         }
 
-        localarrayString = new String[content.size()][4];
+        localarrayString = new String[content.size()][5];
         for(int i = 0; i < content.size(); i++)
         {
-            for(int j = 0; j < 4; j++)
+            for(int j = 0; j < 5; j++)
             {
                 localarrayString[i][j] = content.get(i)[j];
             }
