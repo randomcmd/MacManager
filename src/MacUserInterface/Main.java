@@ -3,15 +3,21 @@ package MacUserInterface;
 import MacExport.MacExport;
 import MacImport.MacImport;
 import MacValidation.MacValidation;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class Main /*extends Application*/ {
+public class Main extends Application {
 
     MacValidation macValidation;
     MacImport macImport;
     MacExport macExport;
+
     /*  IMPORT:
         - Import CSV and convert to string list
         - Send string list to validation
@@ -26,7 +32,7 @@ public class Main /*extends Application*/ {
     */
 
     public static void main(String[] args) {
-        //launch(args);
+        launch(args);
         Main main = new Main();
         main.run();
     }
@@ -46,21 +52,14 @@ public class Main /*extends Application*/ {
         macExport.saveStringArrayToFile(finalizedStringArray, "macs.txt");
         macExport.saveStringArrayToFile(macValidation.getListError().toArray(), "macsFAIL.txt");
 
-        //System.out.println(Arrays.deepToString(csvArray));
-        //System.out.println(Arrays.deepToString(csvArrayMACParsed));
-
-        //Object[] finalizedStringArray = macValidation.validateListString(macValidation.testStringList()).;
-        //macExport.saveStringArrayToFile(csvArrayMACParsed, "macs");
-        //macExport.saveStringArrayToFile(macValidation.getListError().toArray(), "macsFAIL");
-        //System.out.println(Arrays.deepToString(csvArrayMACParsed));
     }
 
-    /*@Override
+
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        primaryStage.setTitle("Mac Manager");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
-    }*/
+    }
 
 }
