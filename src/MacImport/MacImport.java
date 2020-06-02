@@ -6,8 +6,7 @@ import java.util.LinkedList;
 
 public class MacImport {
 
-    public Object[][] CSVToArray(String filename)
-    {
+    public Object[][] CSVToArray(String filename) {
 
         String[] localarrayStringUnformated;
         String[][] localarrayString;
@@ -15,24 +14,18 @@ public class MacImport {
         int count = 0;
         LinkedList<String[]> content = new LinkedList<>();
 
-        try(BufferedReader br = new BufferedReader(new FileReader(filename)))
-        {
-            String line = "";
-            while ((line = br.readLine()) != null)
-            {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = br.readLine()) != null) {
                 content.add(line.split(";"));
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             //Some error logging
         }
 
         localarrayString = new String[content.size()][5];
-        for(int i = 0; i < content.size(); i++)
-        {
-            for(int j = 0; j < 5; j++)
-            {
+        for (int i = 0; i < content.size(); i++) {
+            for (int j = 0; j < 5; j++) {
                 localarrayString[i][j] = content.get(i)[j];
             }
         }
@@ -40,14 +33,12 @@ public class MacImport {
         return localarrayString;
     }
 
-    public LinkedList<String> parseMACfromArray(String[][] localarrayString)
-    {
+    public LinkedList<String> parseMACfromArray(String[][] localarrayString) {
         LinkedList<String> locallistString;
         locallistString = new LinkedList<String>();
 
-        for(int i = 0; i < localarrayString.length; i++)
-        {
-            locallistString.add( localarrayString[i][3] );
+        for (String[] strings : localarrayString) {
+            locallistString.add(strings[3]);
         }
 
         return locallistString;

@@ -32,26 +32,35 @@ public class Main extends Application {
     */
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
         Main main = new Main();
         main.run();
     }
 
     public void run() {
+
+        String csvFile = "sample.csv";
+        String saveFile = "macs.txt";
+        String saveFailFile = "macsFAIL.txt";
+
+        System.out.println("Importing " + csvFile);
+
         macValidation = new MacValidation();
         macImport = new MacImport();
         macExport = new MacExport();
 
-        Object[][] csvArray = macImport.CSVToArray("sample.csv");
+        Object[][] csvArray = macImport.CSVToArray(csvFile);
         String[][] csvArrayString = Arrays.copyOf(csvArray, csvArray.length, String[][].class);
         LinkedList<String> csvListMACParsed = macImport.parseMACfromArray(csvArrayString);
 
+        System.out.println("Validating " + csvFile);
         Object[] finalizedStringArray = macValidation.validateListString(csvListMACParsed).toArray();
         System.out.println(Arrays.deepToString(finalizedStringArray));
 
-        macExport.saveStringArrayToFile(finalizedStringArray, "macs.txt");
-        macExport.saveStringArrayToFile(macValidation.getListError().toArray(), "macsFAIL.txt");
-
+        System.out.println("Exporting MACs from " + csvFile + " to " + saveFile + " and " + saveFailFile);
+        MacExport.saveStringArrayToFile(finalizedStringArray, saveFile);
+        MacExport.saveStringArrayToFile(macValidation.getListError().toArray(), saveFailFile);
+        System.out.println("Finished with all the work");
     }
 
 
