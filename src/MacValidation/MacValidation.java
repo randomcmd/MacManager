@@ -16,16 +16,16 @@ public class MacValidation {
 
     }
 
-    public void test() {
-        //System.out.println(Arrays.deepToString(listMacToString(listStringToMac(testStringList())).toArray()));
-        //MacExport.saveStringArrayToFile(listMacToString(listStringToMac(testStringList())).toArray());
-    }
-
+    /**
+     * Validates String List
+     */
     public LinkedList<String> validateListString(LinkedList<String> locallistString) {
         return listMacToString(listStringToMac(locallistString));
     }
 
-    //Create a list of strings for testing;
+    /**
+     * gentestStringList() generates a random String List of Arrays for testing
+     */
     public LinkedList<String> gentestStringList() {
         LinkedList<String> exampleList = new LinkedList<String>();
         exampleList.add("00-14-22-01-23-45 "); //ADDED SPACE
@@ -39,7 +39,9 @@ public class MacValidation {
         return exampleList;
     }
 
-    //Convert string list to mac list
+    /**
+     * listStringToMac() converts a String List to a Mac List and validates MAC format and validity
+     */
     private LinkedList<MACAddress> listStringToMac(LinkedList<String> locallistString) {
 
         LinkedList<MACAddress> locallistMac = new LinkedList<MACAddress>();
@@ -56,19 +58,17 @@ public class MacValidation {
             try {
                 //Try to convert MACAddressString to MACAddress
                 locallistMac.add(localMACString.toAddress());
-                System.out.println("Parsed: " + localMACString);
+                System.out.println("      Parsed: " + localMACString);
             } catch (Exception e) {
                 try {
                     //If MacAdressString could not be converted, try autocorrection and try it again
-                    //System.out.println(autoCorrectMacAdress(locallistString.get(i)));
                     localMACString = new MACAddressString(autoCorrectMacAdress(s));
-                    //System.out.println(autoCorrectMacAdress(locallistString.get(i)));
                     locallistMac.add(localMACString.toAddress());
-                    System.out.println("Parsed after correction: " + autoCorrectMacAdress(s));
+                    System.out.println("      Parsed after correction: " + autoCorrectMacAdress(s));
                 } catch (Exception f) {
                     //Error message
                     listError.add(s);
-                    System.out.println("Failed to parse following MAC Adress or it does not exist: " + s + " OR " + autoCorrectMacAdress(s));
+                    System.out.println("      Mac does not exist: " + s + " OR " + autoCorrectMacAdress(s));
                 }
 
             }
@@ -78,11 +78,16 @@ public class MacValidation {
         return locallistMac;
     }
 
+    /**
+     * getListError() is used to get the listError
+     */
     public LinkedList<String> getListError() {
         return listError;
     }
 
-    //Convert mac list to string list
+    /**
+     * listMacToString() converts a Mac List to a String List
+     */
     private LinkedList<String> listMacToString(LinkedList<MACAddress> locallistMac) {
         LinkedList<String> locallistString;
         locallistString = new LinkedList<String>();
