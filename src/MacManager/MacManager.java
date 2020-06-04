@@ -31,6 +31,9 @@ public class MacManager {
     public LinkedList<String> csvListMACParsed;
     public Object[] finalizedStringArray;
 
+    /**
+     * Constructor for MacManager
+     */
     public MacManager() {
 
         macImport = new MacImport();
