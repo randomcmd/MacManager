@@ -38,6 +38,9 @@ public class MacManager {
         macExport = new MacExport();
     }
 
+    /**
+     * importFile() imports a csv file from a filepath
+     */
     public void importFile(String localFilename) {
         System.out.println(">> Importing file");
         csvArray = macImport.CSVToArray(localFilename);
@@ -45,12 +48,18 @@ public class MacManager {
         csvListMACParsed = macImport.parseMACfromArray(csvArrayString);
     }
 
+    /**
+     * validateFile() validates MACs from file previously imported by importFiles()
+     */
     public void validateFile() {
         System.out.println(">> Validating file");
         finalizedStringArray = macValidation.validateListString(csvListMACParsed).toArray();
         System.out.println(">> Following MACs have been parsed: " + Arrays.deepToString(finalizedStringArray));
     }
 
+    /**
+     * exportFile() exports validated MACs previously validated by validateFile()
+     */
     public void exportFile(String localFilenameSuccess, String localFilenameFail) {
         System.out.println(">> Exporting MACs");
         MacExport.saveStringArrayToFile(finalizedStringArray, localFilenameSuccess);
