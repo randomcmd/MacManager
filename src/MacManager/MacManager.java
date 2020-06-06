@@ -1,11 +1,15 @@
 package MacManager;
 
+import MacExport.MacExport;
 import MacImport.MacImport;
 import MacValidation.MacValidation;
-import MacExport.MacExport;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class MacManager {
 
@@ -39,12 +43,13 @@ public class MacManager {
         macImport = new MacImport();
         macValidation = new MacValidation();
         macExport = new MacExport();
+        finalizedStringArray = new Object[0];
     }
 
     /**
      * importFile() imports a csv file from a filepath
      */
-    public void importFile(String localFilename) {
+    public void importFile(@NotNull String localFilename) {
         System.out.println(">> Importing file");
         csvArray = macImport.CSVToArray(localFilename);
         csvArrayString = Arrays.copyOf(csvArray, csvArray.length, String[][].class);
@@ -63,11 +68,24 @@ public class MacManager {
     /**
      * exportFile() exports validated MACs previously validated by validateFile()
      */
-    public void exportFile(String localFilenameSuccess, String localFilenameFail) {
+    public void exportFile(@NotNull String localFilenameSuccess, @NotNull String localFilenameFail) {
         System.out.println(">> Exporting MACs");
         MacExport.saveStringArrayToFile(finalizedStringArray, localFilenameSuccess);
         MacExport.saveStringArrayToFile(macValidation.getListError().toArray(), localFilenameFail);
         System.out.println(">> Finished exporting");
+    }
+
+    public void manualEntry(@NotNull String localString) {
+        System.out.println(">> Manually importing " + localString);
+        List<Object> localistObject = Arrays.asList(finalizedStringArray);
+        List<String> localistString = localistObject.stream()
+                .map(object -> Objects.toString(object, null))
+                .collect(Collectors.toList());
+
+        LinkedList<String> localListStringTemp = new LinkedList<String>();
+        localListStringTemp.add(localString);
+        localListStringTemp = macValidation.validateListString(localListStringTemp);
+        finalizedStringArray = localListStringTemp.toArray();
     }
 
 }

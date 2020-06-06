@@ -13,7 +13,8 @@ public class MacValidation {
     LinkedList<String> listError;
 
     public MacValidation() {
-
+        listError = new LinkedList<String>();
+        listMac = new LinkedList<MACAddress>();
     }
 
     /**
@@ -44,10 +45,9 @@ public class MacValidation {
      */
     private LinkedList<MACAddress> listStringToMac(LinkedList<String> locallistString) {
 
-        LinkedList<MACAddress> locallistMac = new LinkedList<MACAddress>();
         MACAddressString localMACString;
-        listError = new LinkedList<String>();
-        if (!listError.isEmpty()) listError.clear();
+        //listError = new LinkedList<String>();
+        //if (!listError.isEmpty()) listError.clear();
 
         //Goes through all the elements of the local string list
         for (String s : locallistString) {
@@ -57,13 +57,13 @@ public class MacValidation {
 
             try {
                 //Try to convert MACAddressString to MACAddress
-                locallistMac.add(localMACString.toAddress());
+                listMac.add(localMACString.toAddress());
                 System.out.println("      Parsed: " + localMACString);
             } catch (Exception e) {
                 try {
                     //If MacAdressString could not be converted, try autocorrection and try it again
                     localMACString = new MACAddressString(autoCorrectMacAdress(s));
-                    locallistMac.add(localMACString.toAddress());
+                    listMac.add(localMACString.toAddress());
                     System.out.println("      Parsed after correction: " + autoCorrectMacAdress(s));
                 } catch (Exception f) {
                     //Error message
@@ -75,7 +75,7 @@ public class MacValidation {
 
         }
 
-        return locallistMac;
+        return listMac;
     }
 
     /**
@@ -92,9 +92,7 @@ public class MacValidation {
         LinkedList<String> locallistString;
         locallistString = new LinkedList<String>();
 
-        for (MACAddress macAddress : locallistMac) {
-            locallistString.add(macAddress.toString());
-        }
+        for (MACAddress macAddress : locallistMac) locallistString.add(macAddress.toString());
 
         return locallistString;
     }
