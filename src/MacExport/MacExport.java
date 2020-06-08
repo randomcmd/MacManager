@@ -1,5 +1,8 @@
 package MacExport;
 
+import Debug.*;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.PrintWriter;
 
 public class MacExport {
@@ -7,7 +10,7 @@ public class MacExport {
     /**
      * saveStringArrayToFile() saves an Object[] consisting of Strings to a filepath
      */
-    public static void saveStringArrayToFile(Object[] localarrayString, String filename) {
+    public static void saveStringArrayToFile(@NotNull Object[] localarrayString, @NotNull String filename) {
         try {
             PrintWriter pr = new PrintWriter(filename);
 
@@ -15,7 +18,7 @@ public class MacExport {
             pr.close();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("No such file exists.");
+            Debug.Log("No such file exists.",1, DEBUGTYPE.ERROR);
         }
     }
 }
