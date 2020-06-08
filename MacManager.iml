@@ -19,5 +19,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="commons-configuration2-2" level="project" />
+    <orderEntry type="library" name="commons-logging-1" level="project" />
   </component>
 </module>

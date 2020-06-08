@@ -1,7 +1,10 @@
 package MacManager;
 
+import Debug.Debug;
 import MacExport.MacExport;
 import MacImport.MacImport;
+import Debug.*;
+
 import MacValidation.MacValidation;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,7 +53,8 @@ public class MacManager {
      * importFile() imports a csv file from a filepath
      */
     public void importFile(@NotNull String localFilename) {
-        System.out.println(">> Importing file");
+        //We use an enom to log DEBUG.SUCSESS
+        Debug.Log("Importing file",0, DEBUGTYPE.SUCSESS);
         csvArray = macImport.CSVToArray(localFilename);
         csvArrayString = Arrays.copyOf(csvArray, csvArray.length, String[][].class);
         csvListMACParsed = macImport.parseMACfromArray(csvArrayString);
@@ -60,32 +64,48 @@ public class MacManager {
      * validateFile() validates MACs from file previously imported by importFiles()
      */
     public void validateFile() {
-        System.out.println(">> Validating file");
+        Debug.Log("Validating Files",0,DEBUGTYPE.SUCSESS);
         finalizedStringArray = macValidation.validateListString(csvListMACParsed).toArray();
-        System.out.println(">> Following MACs have been parsed: " + Arrays.deepToString(finalizedStringArray));
+        Debug.Log("Following MACs have been parsed: " + Arrays.deepToString(finalizedStringArray),0,DEBUGTYPE.SUCSESS);
     }
 
     /**
      * exportFile() exports validated MACs previously validated by validateFile()
      */
     public void exportFile(@NotNull String localFilenameSuccess, @NotNull String localFilenameFail) {
-        System.out.println(">> Exporting MACs");
+        Debug.Log("Exporting MACs",0,DEBUGTYPE.SUCSESS);
         MacExport.saveStringArrayToFile(finalizedStringArray, localFilenameSuccess);
         MacExport.saveStringArrayToFile(macValidation.getListError().toArray(), localFilenameFail);
-        System.out.println(">> Finished exporting");
+        Debug.Log("Finished exporting",0,DEBUGTYPE.SUCSESS);
     }
 
     public void manualEntry(@NotNull String localString) {
-        System.out.println(">> Manually importing " + localString);
+        Debug.Log("Manually importing " + localString,0,DEBUGTYPE.SUCSESS);
         List<Object> localistObject = Arrays.asList(finalizedStringArray);
         List<String> localistString = localistObject.stream()
                 .map(object -> Objects.toString(object, null))
                 .collect(Collectors.toList());
 
-        LinkedList<String> localListStringTemp = new LinkedList<String>();
+        LinkedList<String> localListStringTemp = new LinkedList<>();
         localListStringTemp.add(localString);
         localListStringTemp = macValidation.validateListString(localListStringTemp);
         finalizedStringArray = localListStringTemp.toArray();
+    }
+
+    public int getImportedStat() {
+        if (csvListMACParsed != null) return csvListMACParsed.size();
+        return 0;
+    }
+
+    public int getSuccessfulStat() {
+        if (finalizedStringArray != null) return finalizedStringArray.length;
+        return 0;
+    }
+
+    public int getFailedStat()
+    {
+        if (macValidation.getListError() != null)  return macValidation.getListError().size();
+        return 0;
     }
 
 }

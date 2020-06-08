@@ -3,79 +3,132 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="500.0" maxWidth="964.0" minHeight="500.0" minWidth="964.0" prefHeight="500.0" prefWidth="964.0"
+            style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.Controller">
+   <VBox prefHeight="500.0" prefWidth="161.0" style="-fx-background-color: #ffa500;"><![CDATA[
+   ]]>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="308.0" prefWidth="161.0" text="Mac Manager">
+         <font>
+            <Font size="21.0"/>
+         </font>
+      </Label>
+      <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
+              prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #4a4a4a;" text="Mac Manager"
+              textFill="WHITE">
+         <graphic><![CDATA[
+            ]]><ImageView fitHeight="30.0" fitWidth="37.0">
+            <Image url="@UIResources/folder.png"/>
+         </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
+              prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #4a4a4a;" text="Data Base"
+      >
+         <textFill>WHITE</textFill>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="37.0"><![CDATA[
 
-<AnchorPane maxHeight="500.0" maxWidth="964.0" minHeight="500.0" minWidth="964.0" prefHeight="500.0" prefWidth="964.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.Controller">
-   <children>
-      <VBox prefHeight="500.0" prefWidth="161.0" style="-fx-background-color: #ffa500;">
-         <children>
-            <Label prefHeight="157.0" prefWidth="157.0" text="Label" />
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #999999;" text="Mac Manager">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@UIResources/folder.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #999999;" text="Mac Manager">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@UIResources/folder.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #999999;" text="Mac Manager">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@UIResources/folder.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #999999;" text="Mac Manager">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@UIResources/folder.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #999999;" text="Mac Manager">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@UIResources/folder.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #999999;" text="Mac Manager">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="37.0">
-                     <image>
-                        <Image url="@UIResources/folder.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children></VBox>
-      <HBox alignment="CENTER_LEFT" layoutX="161.0" prefHeight="151.0" prefWidth="740.0">
-         <children>
-            <Label text="Label" />
-            <Button mnemonicParsing="false" onAction="#selectFile" prefHeight="106.0" prefWidth="290.0" text="Import" />
-            <Button mnemonicParsing="false" onAction="#validateFile" prefHeight="106.0" prefWidth="290.0" text="Validate" />
-            <Button mnemonicParsing="false" onAction="#exportFile" prefHeight="106.0" prefWidth="290.0" text="Export" />
-         </children>
-      </HBox>
-      <HBox layoutX="161.0" layoutY="151.0" prefHeight="31.0" prefWidth="798.0">
-         <children>
-            <TextField fx:id="tfManualEntry" prefHeight="25.0" prefWidth="253.0" />
-            <Button mnemonicParsing="false" onAction="#manualEntryTest" text="Manual Entry" />
-         </children>
-      </HBox>
-   </children>
+               ]]><Image url="@UIResources/folder.png"/>
+            </ImageView>
+         </graphic>
+      </Button>
+      <![CDATA[
+   ]]>
+      <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
+              prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #4a4a4a;" text="Settings"
+              textFill="WHITE"><![CDATA[
+         ]]><graphic>
+         <ImageView fitHeight="30.0" fitWidth="37.0">
+            <Image url="@UIResources/folder.png"/>
+         </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
+              prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: #4a4a4a;" text="Help"
+              textFill="WHITE"><![CDATA[
+         ]]><graphic>
+         <ImageView fitHeight="30.0" fitWidth="37.0">
+            <Image url="@UIResources/folder.png"/>
+         </ImageView>
+         </graphic>
+      </Button>
+   </VBox>
+   <HBox alignment="CENTER" layoutX="160.0" layoutY="109.0" prefHeight="151.0" prefWidth="804.0">
+      <Button fx:id="bImport" mnemonicParsing="false" onAction="#selectFile" prefHeight="106.0" prefWidth="250.0"
+              style="-fx-background-color: #ffa500;" text="Import">
+         <font>
+            <Font size="25.0"/>
+         </font>
+      </Button>
+      <![CDATA[
+   ]]>
+      <Button fx:id="bValidate" mnemonicParsing="false" onAction="#validateFile" prefHeight="106.0" prefWidth="250.0"
+              style="-fx-background-color: #ffa500;" text="Validate">
+         <font>
+            <Font size="25.0"/>
+         </font>
+      </Button>
+      <Button fx:id="bExport" mnemonicParsing="false" onAction="#exportFile" prefHeight="106.0" prefWidth="250.0"
+              style="-fx-background-color: #ffa500;" text="Export">
+         <font>
+            <Font size="25.0"/>
+         </font>
+      </Button>
+   </HBox>
+   <HBox alignment="CENTER" layoutX="161.0" layoutY="260.0" prefHeight="31.0" prefWidth="804.0">
+      <TextField fx:id="tfManualEntry" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: #4a4a4a;"/>
+      <Button mnemonicParsing="false" onAction="#manualEntryTest" prefHeight="25.0" prefWidth="118.0"
+              style="-fx-background-color: #ffa500;" text="Manual Entry"/>
+   </HBox>
+   <GridPane alignment="CENTER" layoutX="161.0" layoutY="50.0" prefHeight="69.0" prefWidth="804.0">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES"/>
+         <RowConstraints maxHeight="107.0" minHeight="4.0" prefHeight="24.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="265.0" text="Imported"
+             textAlignment="CENTER" textFill="#c9c9c9">
+         <font>
+            <Font name="System Bold" size="25.0"/>
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="238.0" text="Sucsessful"
+             textAlignment="CENTER" textFill="LIME" GridPane.columnIndex="1">
+         <font>
+            <Font name="System Bold" size="25.0"/>
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="242.0" text="Failed"
+             textAlignment="CENTER" textFill="RED" GridPane.columnIndex="2">
+         <font>
+            <Font name="System Bold" size="25.0"/>
+         </font>
+      </Label>
+      <Label fx:id="lImported" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="520.0"
+             text="0" textFill="WHITE" GridPane.rowIndex="1">
+         <font>
+            <Font size="25.0"/>
+         </font>
+      </Label>
+      <Label fx:id="lSucsessful" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="509.0"
+             text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="25.0"/>
+         </font>
+      </Label>
+      <Label fx:id="lFailed" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="391.0" text="0"
+             textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <font>
+            <Font size="25.0"/>
+         </font>
+      </Label>
+   </GridPane>
+   <Text layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version Beta 2.5"
+         textAlignment="CENTER" wrappingWidth="804.0"/>
 </AnchorPane>

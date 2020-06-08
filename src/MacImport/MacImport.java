@@ -1,5 +1,7 @@
 package MacImport;
 
+import Debug.*;
+import Settings.Settings;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
@@ -23,17 +25,17 @@ public class MacImport {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
-                content.add(line.split(";"));
+                content.add(line.split(Settings.csvFieldSeperator));
             }
         } catch (Exception e) {
             //Some error logging
-            System.out.println("Error loading CSV file");
+            Debug.Log("Error loading CSV file",1, DEBUGTYPE.ERROR);
         }
 
         //Converting List to Array
-        localarrayString = new String[content.size()][5];
+        localarrayString = new String[content.size()][content.get(0).length];
         for (int i = 0; i < content.size(); i++) {
-            System.arraycopy(content.get(i), 0, localarrayString[i], 0, 5);
+            System.arraycopy(content.get(i), 0, localarrayString[i], 0, content.get(0).length);
         }
 
         return localarrayString;
@@ -44,11 +46,11 @@ public class MacImport {
      */
     public LinkedList<String> parseMACfromArray(@NotNull String[][] localarrayString) {
         LinkedList<String> locallistString;
-        locallistString = new LinkedList<String>();
+        locallistString = new LinkedList<>();
 
         //Take the third entry from each row and add it to a list
         for (String[] strings : localarrayString) {
-            locallistString.add(strings[3]);
+            locallistString.add(strings[Settings.macColumn]);
         }
 
         return locallistString;

@@ -1,5 +1,6 @@
 package MacExport;
 
+import Debug.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.PrintWriter;
@@ -17,7 +18,7 @@ public class MacExport {
             pr.close();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("No such file exists.");
+            Debug.Log("No such file exists.",1, DEBUGTYPE.ERROR);
         }
     }
 }
