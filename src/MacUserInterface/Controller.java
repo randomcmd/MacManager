@@ -28,6 +28,8 @@ public class Controller {
     private Label lSucsessful;
     @FXML
     private Label lFailed;
+    @FXML
+    private Button bSettings;
 
     MacManager macManager;
     Settings settings;
@@ -40,6 +42,7 @@ public class Controller {
     public void initialize() {
         macManager = new MacManager();
         settings = new Settings();
+
         updateButtons();
     }
 
@@ -136,6 +139,14 @@ public class Controller {
         if (!tfManualEntry.getText().isEmpty()) macManager.manualEntry(tfManualEntry.getText());
         tfManualEntry.setText("");
         updateButtons();
+    }
+
+    public void openSettings() {
+        Settings.openFile(Settings.settingsPath);
+    }
+
+    public void openHelp() {
+        Settings.openFile(Settings.helpPath);
     }
 
     /*

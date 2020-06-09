@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -35,6 +36,10 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("Mac Manager");
         primaryStage.setScene(new Scene(root, 964, 500));
+        primaryStage.setResizable(false);
+
+        primaryStage.initStyle(StageStyle.DECORATED);
+
         primaryStage.show();
     }
 
