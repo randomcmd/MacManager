@@ -2,9 +2,12 @@ package Debug;
 
 public class Debug {
 
+    public static String debugLog;
+
     public static void Log(String input)
     {
         System.out.println(input);
+        debugLog = debugLog + System.lineSeparator() + input;
     }
 
     public static void Log(String input, Integer offset, DEBUGTYPE type)
@@ -20,6 +23,7 @@ public class Debug {
         input = repeatString("    ",offset) + input;
 
         System.out.println(input);
+        debugLog = debugLog + System.lineSeparator() + input;
     }
 
     public static String repeatString(String localString, int amount)

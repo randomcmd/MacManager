@@ -31,7 +31,7 @@ public class MacImport {
             //Some error logging
             Debug.Log("Error loading CSV file",1, DEBUGTYPE.ERROR);
         }
-
+                                                                                                                                                                                                                                                                                                                                                                                                                    
         //Converting List to Array
         localarrayString = new String[content.size()][content.get(0).length];
         for (int i = 0; i < content.size(); i++) {
