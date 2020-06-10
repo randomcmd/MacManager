@@ -33,10 +33,9 @@ public class MacManager {
     MacValidation macValidation;
     MacExport macExport;
 
-    public Object[][] csvArray;
-    public String[][] csvArrayString;
-    public LinkedList<String> csvListMACParsed;
-    public Object[] finalizedStringArray;
+    public LinkedList<String[]> csvLinkedListString;
+    public LinkedList<String> csvLinkedListMACParsed;
+    public LinkedList<String> finalizedStringLinkedList;
 
     /**
      * Constructor for MacManager
@@ -46,7 +45,7 @@ public class MacManager {
         macImport = new MacImport();
         macValidation = new MacValidation();
         macExport = new MacExport();
-        finalizedStringArray = new Object[0];
+        finalizedStringLinkedList = new LinkedList<>();
     }
 
     /**
@@ -54,57 +53,54 @@ public class MacManager {
      */
     public void importFile(@NotNull String localFilename) {
         //We use an enom to log DEBUG.SUCSESS
-        Debug.Log("Importing file",0, DEBUGTYPE.SUCSESS);
-        csvArray = macImport.CSVToArray(localFilename);
-        csvArrayString = Arrays.copyOf(csvArray, csvArray.length, String[][].class);
-        csvListMACParsed = macImport.parseMACfromArray(csvArrayString);
+        Debug.Log("Importing file", 0, DEBUGTYPE.SUCCESS);
+        csvLinkedListString = macImport.CSVToLinkedList(localFilename);
+        csvLinkedListMACParsed = macImport.parseMACfromLinkedList(csvLinkedListString);
+
+        for (String s : macImport.parseMACfromLinkedList(csvLinkedListString)) {
+            csvLinkedListMACParsed.add(s);
+        }
     }
 
     /**
      * validateFile() validates MACs from file previously imported by importFiles()
      */
     public void validateFile() {
-        Debug.Log("Validating Files",0,DEBUGTYPE.SUCSESS);
-        finalizedStringArray = macValidation.validateListString(csvListMACParsed).toArray();
-        Debug.Log("Following MACs have been parsed: " + Arrays.deepToString(finalizedStringArray),0,DEBUGTYPE.SUCSESS);
+        Debug.Log("Validating Files", 0, DEBUGTYPE.SUCCESS);
+
+        for (String s : macValidation.validateListString(csvLinkedListMACParsed)) {
+            finalizedStringLinkedList.add(s);
+        }
+        Debug.Log("Following MACs have been parsed: " + Arrays.deepToString(finalizedStringLinkedList.toArray()), 0, DEBUGTYPE.SUCCESS);
     }
 
     /**
      * exportFile() exports validated MACs previously validated by validateFile()
      */
     public void exportFile(@NotNull String localFilenameSuccess, @NotNull String localFilenameFail) {
-        Debug.Log("Exporting MACs",0,DEBUGTYPE.SUCSESS);
-        MacExport.saveStringArrayToFile(finalizedStringArray, localFilenameSuccess);
-        MacExport.saveStringArrayToFile(macValidation.getListError().toArray(), localFilenameFail);
-        Debug.Log("Finished exporting",0,DEBUGTYPE.SUCSESS);
+        Debug.Log("Exporting MACs", 0, DEBUGTYPE.SUCCESS);
+        MacExport.saveStringLinkedListToFile(finalizedStringLinkedList, localFilenameSuccess);
+        MacExport.saveStringLinkedListToFile(macValidation.getListError(), localFilenameFail);
+        Debug.Log("Finished exporting", 0, DEBUGTYPE.SUCCESS);
     }
 
     public void manualEntry(@NotNull String localString) {
-        Debug.Log("Manually importing " + localString,0,DEBUGTYPE.SUCSESS);
-        List<Object> localistObject = Arrays.asList(finalizedStringArray);
-        List<String> localistString = localistObject.stream()
-                .map(object -> Objects.toString(object, null))
-                .collect(Collectors.toList());
-
-        LinkedList<String> localListStringTemp = new LinkedList<>();
-        localListStringTemp.add(localString);
-        localListStringTemp = macValidation.validateListString(localListStringTemp);
-        finalizedStringArray = localListStringTemp.toArray();
+        Debug.Log("Manually importing " + localString, 0, DEBUGTYPE.SUCCESS);
+        finalizedStringLinkedList.add(localString);
     }
 
     public int getImportedStat() {
-        if (csvListMACParsed != null) return csvListMACParsed.size();
+        if (csvLinkedListMACParsed != null) return csvLinkedListMACParsed.size();
         return 0;
     }
 
     public int getSuccessfulStat() {
-        if (finalizedStringArray != null) return finalizedStringArray.length;
+        if (finalizedStringLinkedList != null) return finalizedStringLinkedList.size();
         return 0;
     }
 
-    public int getFailedStat()
-    {
-        if (macValidation.getListError() != null)  return macValidation.getListError().size();
+    public int getFailedStat() {
+        if (macValidation.getListError() != null) return macValidation.getListError().size();
         return 0;
     }
 

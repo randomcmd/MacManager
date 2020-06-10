@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="500.0" maxWidth="964.0" minHeight="500.0" minWidth="964.0" prefHeight="500.0" prefWidth="964.0" style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.Controller">
+<AnchorPane maxHeight="500.0" maxWidth="964.0" minHeight="500.0" minWidth="964.0" prefHeight="500.0" prefWidth="964.0" style="-fx-background-color: #2e2e2e;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.Controller">
    <children>
        <VBox prefHeight="500.0" prefWidth="161.0" style="-fx-background-color: #ffa500;">
           <children>
@@ -95,7 +94,7 @@
                       <Font name="System Bold" size="25.0" />
                   </font>
               </Label>
-              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="238.0" text="Sucsessful" textAlignment="CENTER" textFill="LIME" GridPane.columnIndex="1">
+              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="238.0" text="Successful" textAlignment="CENTER" textFill="LIME" GridPane.columnIndex="1">
                   <font>
                       <Font name="System Bold" size="25.0" />
                   </font>
@@ -122,6 +121,6 @@
               </Label>
           </children>
        </GridPane>
-       <Text layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version Beta 2.5" textAlignment="CENTER" wrappingWidth="804.0" />
+       <Text layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version Beta 2.6" textAlignment="CENTER" wrappingWidth="804.0" />
    </children>
 </AnchorPane>

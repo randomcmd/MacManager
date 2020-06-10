@@ -2,5 +2,5 @@ package Debug;
 
 public enum DEBUGTYPE
 {
-    SUCSESS, ERROR, DETAIL
+    SUCCESS, ERROR, DETAIL
 }

@@ -94,7 +94,7 @@
                       <Font name="System Bold" size="25.0" />
                   </font>
               </Label>
-              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="238.0" text="Sucsessful" textAlignment="CENTER" textFill="LIME" GridPane.columnIndex="1">
+              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="238.0" text="Successful" textAlignment="CENTER" textFill="LIME" GridPane.columnIndex="1">
                   <font>
                       <Font name="System Bold" size="25.0" />
                   </font>

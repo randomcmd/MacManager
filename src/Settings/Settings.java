@@ -23,7 +23,7 @@ public class Settings {
         try {
             properties = new Properties();
             properties.load(new FileInputStream(settingsPath));
-            Debug.Log("Importing settings.properties" + settingsPath,0,DEBUGTYPE.SUCSESS);
+            Debug.Log("Importing settings.properties" + settingsPath,0,DEBUGTYPE.SUCCESS);
 
             macColumn = Integer.parseInt(properties.getProperty("macColumn"));
             Debug.Log("macColumn = " + macColumn,1, DEBUGTYPE.DETAIL);
