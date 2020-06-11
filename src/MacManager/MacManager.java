@@ -33,7 +33,7 @@ public class MacManager {
     MacValidation macValidation;
     MacExport macExport;
 
-    public LinkedList<String[]> csvLinkedListString;
+    public LinkedList<LinkedList<String>> csvLinkedListString;
     public LinkedList<String> csvLinkedListMACParsed;
     public LinkedList<String> finalizedStringLinkedList;
 
@@ -45,7 +45,10 @@ public class MacManager {
         macImport = new MacImport();
         macValidation = new MacValidation();
         macExport = new MacExport();
-        finalizedStringLinkedList = new LinkedList<>();
+
+        csvLinkedListString = new LinkedList<LinkedList<String>>();
+        finalizedStringLinkedList = new LinkedList<String>();
+        csvLinkedListMACParsed = new LinkedList<String>();
     }
 
     /**
@@ -54,12 +57,11 @@ public class MacManager {
     public void importFile(@NotNull String localFilename) {
         //We use an enom to log DEBUG.SUCSESS
         Debug.Log("Importing file", 0, DEBUGTYPE.SUCCESS);
-        csvLinkedListString = macImport.CSVToLinkedList(localFilename);
-        csvLinkedListMACParsed = macImport.parseMACfromLinkedList(csvLinkedListString);
 
-        for (String s : macImport.parseMACfromLinkedList(csvLinkedListString)) {
-            csvLinkedListMACParsed.add(s);
-        }
+        csvLinkedListString.addAll(macImport.CSVToLinkedList(localFilename));
+        csvLinkedListMACParsed.addAll(macImport.parseMACfromLinkedList(macImport.CSVToLinkedList(localFilename)));
+
+        //Debug.Log(Arrays.deepToString(csvLinkedListMACParsed.toArray()));
     }
 
     /**
@@ -68,9 +70,8 @@ public class MacManager {
     public void validateFile() {
         Debug.Log("Validating Files", 0, DEBUGTYPE.SUCCESS);
 
-        for (String s : macValidation.validateListString(csvLinkedListMACParsed)) {
-            finalizedStringLinkedList.add(s);
-        }
+        finalizedStringLinkedList = macValidation.validateListString(csvLinkedListMACParsed);
+
         Debug.Log("Following MACs have been parsed: " + Arrays.deepToString(finalizedStringLinkedList.toArray()), 0, DEBUGTYPE.SUCCESS);
     }
 
@@ -86,7 +87,16 @@ public class MacManager {
 
     public void manualEntry(@NotNull String localString) {
         Debug.Log("Manually importing " + localString, 0, DEBUGTYPE.SUCCESS);
-        finalizedStringLinkedList.add(localString);
+
+        LinkedList<String> localistObject = finalizedStringLinkedList;
+        List<String> localistString = localistObject.stream()
+                .map(object -> Objects.toString(object, null))
+                .collect(Collectors.toList());
+
+        LinkedList<String> localListStringTemp = new LinkedList<>();
+        localListStringTemp.add(localString);
+        localListStringTemp = macValidation.validateListString(localListStringTemp);
+        finalizedStringLinkedList = localListStringTemp;
     }
 
     public int getImportedStat() {

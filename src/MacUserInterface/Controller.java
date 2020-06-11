@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 
 //Controller of GUI lul
 public class Controller {
@@ -53,15 +55,20 @@ public class Controller {
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setTitle("Open CSV file (Selecting multiple files supported)");
 
         // Show open file dialog
-        File file = fileChooser.showOpenDialog(Main.primaryStage);
+        List<File> files = fileChooser.showOpenMultipleDialog(Main.primaryStage);
 
-        if (file != null) {
-            fileLabel.setText(file.getPath());
-            macManager.importFile(file.getPath());
-            stage = 1;
-            System.out.println(">> Opening " + file.getPath());
+        if (files != null && !files.isEmpty()) {
+            for (File file : files) {
+                if (file != null) {
+                    fileLabel.setText(file.getPath());
+                    macManager.importFile(file.getPath());
+                    stage = 1;
+                    System.out.println(">> Opening " + file.getPath());
+                }
+            }
         }
 
         updateButtons();
@@ -110,8 +117,7 @@ public class Controller {
         updateButtons();
     }
 
-    public void updateButtons()
-    {
+    public void updateButtons() {
         switch (stage) {
             case 0 -> {
                 bImport.setDisable(false);
@@ -178,5 +184,5 @@ public class Controller {
         }
 
      */
-    }
+}
 
