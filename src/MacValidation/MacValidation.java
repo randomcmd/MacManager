@@ -47,7 +47,8 @@ public class MacValidation {
     private LinkedList<MACAddress> listStringToMac(LinkedList<String> locallistString) {
 
         MACAddressString localMACString;
-        //listError = new LinkedList<String>();
+        listError = new LinkedList<String>();
+        listMac = new LinkedList<MACAddress>();
         //if (!listError.isEmpty()) listError.clear();
 
         //Goes through all the elements of the local string list

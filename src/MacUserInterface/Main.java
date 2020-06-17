@@ -1,5 +1,6 @@
 package MacUserInterface;
 
+import Debug.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,18 +12,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        Main main = new Main();
-        main.run();
-    }
-
-    public void run() {
-        //MacManager is used to handle the import, validation and export
-        //macManager = new MacManager();
-
-        //Import, Validate, Export
-        //macManager.importFile("sample.csv");
-        //macManager.validateFile();
-        //macManager.exportFile("macs.txt", "macsFAIL.txt");
     }
 
     /**

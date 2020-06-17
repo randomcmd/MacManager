@@ -14,7 +14,7 @@ public class Debug {
     {
         switch(type)
         {
-            case SUCSESS: input = ">> " + input; break;
+            case SUCCESS: input = ">> " + input; break;
             case ERROR: input = "!! " + input;
             default: break;
         }
