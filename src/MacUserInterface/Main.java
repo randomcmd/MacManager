@@ -1,5 +1,6 @@
 package MacUserInterface;
 
+import ConnectToDatabase.ConnectToDatabase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ public class Main extends Application {
         launch(args);
         Main main = new Main();
         main.run();
+        ConnectToDatabase.database();
     }
 
     public void run() {
@@ -23,6 +25,7 @@ public class Main extends Application {
         //macManager.importFile("sample.csv");
         //macManager.validateFile();
         //macManager.exportFile("macs.txt", "macsFAIL.txt");
+
     }
 
     /**
