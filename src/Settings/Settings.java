@@ -16,6 +16,7 @@ public class Settings {
     public static int macColumn;
     public static String csvFieldSeperator;
 
+
     Properties properties;
 
     public Settings() {

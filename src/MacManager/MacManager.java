@@ -1,5 +1,6 @@
 package MacManager;
 
+import ConnectToDatabase.ConnectToDatabase;
 import Debug.Debug;
 import MacExport.MacExport;
 import MacImport.MacImport;
@@ -8,6 +9,7 @@ import Debug.*;
 import MacValidation.MacValidation;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.Connection;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class MacManager {
     MacValidation macValidation;
     MacExport macExport;
 
+
     public Object[][] csvArray;
     public String[][] csvArrayString;
     public LinkedList<String> csvListMACParsed;
@@ -47,6 +50,7 @@ public class MacManager {
         macValidation = new MacValidation();
         macExport = new MacExport();
         finalizedStringArray = new Object[0];
+
     }
 
     /**
