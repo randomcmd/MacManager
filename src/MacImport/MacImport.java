@@ -41,10 +41,15 @@ public class MacImport {
         LinkedList<String> returnlistString = new LinkedList<String>();
 
         //Take the third entry from each row and add it to a list
-        for (LinkedList<String> strings : locallistString) {
-            returnlistString.add(strings.get(Settings.macColumn));
+        try {
+            for (LinkedList<String> strings : locallistString) {
+                returnlistString.add(strings.get(Settings.macColumn));
+            }
         }
-
+        catch(Exception e)
+        {
+            Debug.Log("Mac Column is out of csv bounds", 0, DEBUGTYPE.ERROR);
+        }
         return returnlistString;
     }
 }
