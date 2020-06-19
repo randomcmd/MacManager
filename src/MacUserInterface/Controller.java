@@ -38,6 +38,10 @@ public class Controller {
     private Label lFailed;
     @FXML
     private Button bSettings;
+    @FXML
+    private javafx.scene.control.Button closeButton;
+    @FXML
+    private javafx.scene.control.Button minimizeButton;
 
     MacManager macManager;
     Settings settings;
@@ -163,6 +167,21 @@ public class Controller {
         settingsStage.initStyle(StageStyle.DECORATED);
 
         settingsStage.show();
+    }
+
+    @FXML
+    private void closeButtonAction(){
+        // get a handle to the stage
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
+    @FXML
+    public void minimizeButtonAction() {
+        Stage stage=(Stage) minimizeButton.getScene().getWindow();
+        // is stage minimizable into task bar. (true | false)
+        stage.setIconified(true);
     }
 
     public void openHelp() {
