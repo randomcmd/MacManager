@@ -1,0 +1,1 @@
+--module-path C\Users\46B120U16\Desktop\macurumanageru\src\Libraries\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.fxml
