@@ -25,6 +25,9 @@ public class Settings {
 
     }
 
+    /**
+     * importSettings() imports Settings from file to static values
+     */
     public void importSettings()
     {
         try {

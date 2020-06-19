@@ -85,6 +85,9 @@ public class MacManager {
         Debug.Log("Finished exporting", 0, DEBUGTYPE.SUCCESS);
     }
 
+    /**
+     * manualEntry() allows for manual entry
+     */
     public void manualEntry(@NotNull String localString) {
         Debug.Log("Manually importing " + localString, 0, DEBUGTYPE.SUCCESS);
 
