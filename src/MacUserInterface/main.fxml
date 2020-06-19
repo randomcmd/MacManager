@@ -109,7 +109,7 @@
                       <Font size="25.0" />
                   </font>
               </Label>
-              <Label fx:id="lSucsessful" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="509.0" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <Label fx:id="lSuccessful" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="509.0" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <font>
                       <Font size="25.0" />
                   </font>
@@ -121,6 +121,6 @@
               </Label>
           </children>
        </GridPane>
-       <Text layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version Beta 2.6" textAlignment="CENTER" wrappingWidth="804.0" />
+       <Text fx:id="lVersion" layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="804.0" />
    </children>
 </AnchorPane>

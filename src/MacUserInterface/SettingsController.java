@@ -3,11 +3,11 @@ package MacUserInterface;
 import Debug.*;
 import Settings.Settings;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-public class SettingsController{
+public class SettingsController {
 
     Settings settings = new Settings();
 
@@ -20,20 +20,21 @@ public class SettingsController{
     @FXML
     TextField tfMacColumn;
 
-    public void initialize()
-    {
-        tfCSVFieldSeperator.setText(Settings.csvFieldSeperator);
+    public void initialize() {
+        tfCSVFieldSeperator.setText(Settings.csvFieldSeparator);
         tfMacColumn.setText(String.valueOf(Settings.macColumn));
     }
 
-    public void updateButton()
-    {
-        if(validateInput()){bApplySettings.setDisable(false);}else{bApplySettings.setDisable(true);}
+    public void updateButton() {
+        if (validateInput()) {
+            bApplySettings.setDisable(false);
+        } else {
+            bApplySettings.setDisable(true);
+        }
     }
 
-    public boolean validateInput()
-    {
-        try{
+    public boolean validateInput() {
+        try {
             int num = Integer.parseInt(tfMacColumn.getText());
             return true;
         } catch (NumberFormatException e) {
@@ -41,12 +42,19 @@ public class SettingsController{
         }
     }
 
-    public void applySettings()
-    {
-        settings.setProperty("csvFieldSeperator",tfCSVFieldSeperator.getText());
-        settings.setProperty("macColumn",tfMacColumn.getText());
+    public void applySettings() {
+        settings.setProperty("csvFieldSeperator", tfCSVFieldSeperator.getText());
+        settings.setProperty("macColumn", tfMacColumn.getText());
         settings.saveSettings();
         settings.importSettings();
-        Debug.Log("Settings applied",0, DEBUGTYPE.SUCCESS);
+        Debug.Log("Settings applied", 0, DEBUGTYPE.SUCCESS);
+        closeButtonAction();
+    }
+
+    private void closeButtonAction() {
+        // get a handle to the stage
+        Stage stage = (Stage) bApplySettings.getScene().getWindow();
+        // do what you have to do
+        stage.close();
     }
 }

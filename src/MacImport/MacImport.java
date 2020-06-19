@@ -23,7 +23,7 @@ public class MacImport {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = br.readLine()) != null) {
-                content.add(new LinkedList<>(Arrays.asList(line.split(Settings.csvFieldSeperator))));
+                content.add(new LinkedList<>(Arrays.asList(line.split(Settings.csvFieldSeparator))));
             }
         } catch (Exception e) {
             //Some error logging

@@ -9,13 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 //Controller of GUI lul
@@ -33,11 +33,14 @@ public class Controller {
     @FXML
     private Label lImported;
     @FXML
-    private Label lSucsessful;
+    private Label lSuccessful;
     @FXML
     private Label lFailed;
     @FXML
     private Button bSettings;
+
+    @FXML
+    private Text lVersion;
 
     MacManager macManager;
     Settings settings;
@@ -50,6 +53,8 @@ public class Controller {
     public void initialize() {
         macManager = new MacManager();
         settings = new Settings();
+
+        lVersion.setText("Version " + Settings.version);
 
         updateButtons();
     }
@@ -143,7 +148,7 @@ public class Controller {
         }
 
         lImported.setText(Integer.toString(macManager.getImportedStat()));
-        lSucsessful.setText(Integer.toString(macManager.getSuccessfulStat()));
+        lSuccessful.setText(Integer.toString(macManager.getSuccessfulStat()));
         lFailed.setText(Integer.toString(macManager.getFailedStat()));
     }
 

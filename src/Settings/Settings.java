@@ -12,10 +12,11 @@ import java.util.Properties;
 
 public class Settings {
 
+    public static String version = "Beta 2.6";
     public static String settingsPath = "settings.properties";
     public static String helpPath = "help.pdf";
     public static int macColumn;
-    public static String csvFieldSeperator;
+    public static String csvFieldSeparator;
 
     Properties properties;
 
@@ -35,10 +36,13 @@ public class Settings {
             properties.load(new FileInputStream(settingsPath));
             Debug.Log("Importing " + settingsPath,0,DEBUGTYPE.SUCCESS);
 
+            csvFieldSeparator = properties.getProperty("csvFieldSeparator");
+            Debug.Log("csvFieldSeparator = " + csvFieldSeparator,1, DEBUGTYPE.DETAIL);
+
             macColumn = Integer.parseInt(properties.getProperty("macColumn"));
             Debug.Log("macColumn = " + macColumn,1, DEBUGTYPE.DETAIL);
-            csvFieldSeperator = properties.getProperty("csvFieldSeperator");
-            Debug.Log("csvFieldSeperator = " + csvFieldSeperator,1, DEBUGTYPE.DETAIL);
+
+            //Space for more settings
         }
         catch (Exception ex) {
             Debug.Log("Error loading " + Settings.settingsPath,0,DEBUGTYPE.ERROR);

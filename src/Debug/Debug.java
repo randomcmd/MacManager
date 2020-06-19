@@ -1,5 +1,7 @@
 package Debug;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Debug {
 
     public static String debugLog;
@@ -12,7 +14,7 @@ public class Debug {
     }
 
     //Fancy Debug Log
-    public static void Log(String input, Integer offset, DEBUGTYPE type)
+    public static void Log(String input, Integer offset, @NotNull DEBUGTYPE type)
     {
         switch(type)
         {
