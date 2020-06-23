@@ -12,10 +12,12 @@ public class MacValidation {
     //Two lists are created that store MAC Addresses and the MAC Adresses that could not be parsed
     LinkedList<MACAddress> listMac;
     LinkedList<String> listError;
+    LinkedList<String> listComplete;
 
     public MacValidation() {
         listError = new LinkedList<>();
         listMac = new LinkedList<>();
+        listComplete = new LinkedList<>();
     }
 
     /**
@@ -49,6 +51,7 @@ public class MacValidation {
         MACAddressString localMACString;
         listError = new LinkedList<String>();
         listMac = new LinkedList<MACAddress>();
+        listComplete = new LinkedList<String>();
         //if (!listError.isEmpty()) listError.clear();
 
         //Goes through all the elements of the local string list
@@ -60,16 +63,19 @@ public class MacValidation {
             try {
                 //Try to convert MACAddressString to MACAddress
                 listMac.add(localMACString.toAddress());
+                listComplete.add(localMACString.toString());
                 Debug.Log("Parsed: " + localMACString,1, DEBUGTYPE.DETAIL);
             } catch (Exception e) {
                 try {
                     //If MacAdressString could not be converted, try autocorrection and try it again
                     localMACString = new MACAddressString(autoCorrectMacAdress(s));
                     listMac.add(localMACString.toAddress());
+                    listComplete.add(localMACString.toString());
                     Debug.Log("Parsed after correction: " + autoCorrectMacAdress(s),1, DEBUGTYPE.DETAIL);
                 } catch (Exception f) {
                     //Error message
                     listError.add(s);
+                    listComplete.add(s);
                     Debug.Log("Mac does not exist: " + s + " OR " + autoCorrectMacAdress(s),1, DEBUGTYPE.DETAIL);
                 }
 

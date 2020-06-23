@@ -48,5 +48,7 @@ public class SettingsController{
         settings.saveSettings();
         settings.importSettings();
         Debug.Log("Settings applied",0, DEBUGTYPE.SUCCESS);
+        Debug.Log("csvFieldSeperator = " + Settings.csvFieldSeperator,1,DEBUGTYPE.DETAIL);
+        Debug.Log("macColumn = " + Settings.macColumn,1,DEBUGTYPE.DETAIL);
     }
 }
