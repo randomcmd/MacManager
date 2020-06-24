@@ -92,7 +92,7 @@ public class MacValidation {
     public LinkedList<String> getListError() {
         return listError;
     }
-
+    public LinkedList<String> getListComplete() {return listComplete;}
     /**
      * listMacToString() converts a Mac List to a String List
      */
