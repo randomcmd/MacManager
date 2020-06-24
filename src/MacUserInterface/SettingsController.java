@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class SettingsController{
 
@@ -19,6 +20,8 @@ public class SettingsController{
 
     @FXML
     TextField tfMacColumn;
+    @FXML
+    private javafx.scene.control.Button closeButton2;
 
     public void initialize()
     {
@@ -49,4 +52,12 @@ public class SettingsController{
         settings.importSettings();
         Debug.Log("Settings applied",0, DEBUGTYPE.SUCCESS);
     }
+    @FXML
+    private void closeButtonAction2(){
+        // get a handle to the stage
+        Stage stage = (Stage) closeButton2.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
 }

@@ -12,7 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -157,6 +158,9 @@ public class Controller {
         updateButtons();
     }
 
+    static Stage settingsStage;
+    private double xOffset = 0;
+    private double yOffset = 0;
     public void openSettings() throws IOException {
         Stage settingsStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
@@ -164,7 +168,21 @@ public class Controller {
         settingsStage.setScene(new Scene(root, 420, 124));
         settingsStage.setResizable(false);
 
-        settingsStage.initStyle(StageStyle.DECORATED);
+        settingsStage.initStyle(StageStyle.UNDECORATED);
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                settingsStage.setX(event.getScreenX() - xOffset);
+                settingsStage.setY(event.getScreenY() - yOffset);
+            }
+        });
 
         settingsStage.show();
     }
@@ -176,6 +194,7 @@ public class Controller {
         // do what you have to do
         stage.close();
     }
+
 
     @FXML
     public void minimizeButtonAction() {

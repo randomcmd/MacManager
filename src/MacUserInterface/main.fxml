@@ -98,7 +98,7 @@
                <RowConstraints maxHeight="107.0" minHeight="4.0" prefHeight="24.0" vgrow="SOMETIMES" />
            </rowConstraints>
           <children>
-              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="265.0" text="Imported" textAlignment="CENTER" textFill="#c9c9c9">
+              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="265.0" text="Imported" textAlignment="CENTER" textFill="WHITE">
                   <font>
                       <Font name="System Bold" size="25.0" />
                   </font>
@@ -131,8 +131,8 @@
           </children>
        </GridPane>
        <Text layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version Beta 2.6" textAlignment="CENTER" wrappingWidth="804.0" />
-      <Button fx:id="closeButton" onAction="#closeButtonAction" layoutX="942.0" layoutY="6.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: #FF0404; -fx-background-insets: -1.4, 0; -fx-background-radius: 16.4, 15; -fx-border-radius: 15; -fx-border-width: 2; -fx-padding: 0;" />
-      <Button layoutX="916.0" layoutY="6.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: FFFB04; -fx-background-radius: 16.4, 15; -fx-background-insets: -1.4, 0; -fx-border-insets: 15; -fx-border-width: 2; -fx-padding: 0;" />
-      <Button fx:id="minimizeButton" onAction="#minimizeButtonAction" layoutX="888.0" layoutY="6.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: lime; -fx-background-insets: -1.4, 0; -fx-background-radius: 16.4, 15; -fx-border-radius: 15; -fx-border-width: 2; -fx-padding: 0;" />
+      <Button fx:id="closeButton" layoutX="942.0" layoutY="6.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: linear-gradient(ff4242, a30000); -fx-background-insets: -1.4, 0; -fx-background-radius: 16.4, 15; -fx-border-radius: 15; -fx-border-width: 2; -fx-padding: 0;" />
+      <Button layoutX="916.0" layoutY="6.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: linear-gradient(fff717, d1af04); -fx-background-radius: 16.4, 15; -fx-background-insets: -1.4, 0; -fx-border-insets: 15; -fx-border-width: 2; -fx-padding: 0;" />
+      <Button fx:id="minimizeButton" layoutX="888.0" layoutY="6.0" mnemonicParsing="false" onAction="#minimizeButtonAction" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: linear-gradient(lime, green); -fx-background-insets: -1.4, 0; -fx-background-radius: 16.4, 15; -fx-border-radius: 15; -fx-border-width: 2; -fx-padding: 0;" />
    </children>
 </AnchorPane>
