@@ -6,6 +6,7 @@ import MacImport.MacImport;
 import Debug.*;
 
 import MacValidation.MacValidation;
+import Settings.Settings;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -72,6 +73,8 @@ public class MacManager {
 
         finalizedStringLinkedList = macValidation.validateListString(csvLinkedListMACParsed);
 
+        updateCompleteDataSet();
+        debugPrintCompleteDataSet();
         Debug.Log("Following MACs have been parsed: " + Arrays.deepToString(finalizedStringLinkedList.toArray()), 0, DEBUGTYPE.SUCCESS);
     }
 
@@ -100,6 +103,26 @@ public class MacManager {
         localListStringTemp.add(localString);
         localListStringTemp = macValidation.validateListString(localListStringTemp);
         finalizedStringLinkedList = localListStringTemp;
+    }
+
+    //It is 23:36 14/06/2020 and im about to write the dumbest code ever
+    //Insdead of updating only the important elements im gonna yeet fuck this shit and brute force update the wohle list fuck it time pressure
+    //Basically it matches the complete list with the list list that stores the entire data
+    //Update it is 23:40 AND I FEEL ASHAMED OF THIS CODE
+    //Just found the perfect code to export 2d array to csv but its for python fml
+    public void updateCompleteDataSet() //updates csvlinkedliststring with listcomplete
+    {
+        int i = 0;
+        for (LinkedList locallistListString : csvLinkedListString)
+        {
+            locallistListString.set(Settings.macColumn, macValidation.getListComplete().get(i));
+            i++;
+        }
+    }
+
+    public void debugPrintCompleteDataSet()
+    {
+        Debug.Log(Arrays.deepToString(csvLinkedListString.toArray()));
     }
 
     public int getImportedStat() {
