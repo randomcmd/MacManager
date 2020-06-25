@@ -22,7 +22,7 @@ public class MacExport {
             Debug.Log("No such file exists.",1, DEBUGTYPE.ERROR);
         }
     }
-
+//cannt have shit in detroid
     public static void saveStringLinkedListToFile(@NotNull LinkedList<String> locallistString, @NotNull String filename) {
         try {
             PrintWriter pr = new PrintWriter(filename);
