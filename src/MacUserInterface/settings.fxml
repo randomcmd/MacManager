@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="124.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.SettingsController">
+   <children>
+      <Button fx:id="bApplySettings" layoutX="354.0" layoutY="14.0" mnemonicParsing="false" onAction="#applySettings" text="Apply" />
+      <TextField fx:id="tfCSVFieldSeperator" layoutX="14.0" layoutY="56.0" onInputMethodTextChanged="#updateButton" onKeyPressed="#updateButton" onKeyReleased="#updateButton" onKeyTyped="#updateButton" />
+      <TextField fx:id="tfMacColumn" layoutX="14.0" layoutY="89.0" onInputMethodTextChanged="#updateButton" onKeyPressed="#updateButton" onKeyReleased="#updateButton" onKeyTyped="#updateButton" />
+      <Label layoutX="163.0" layoutY="60.0" text="CSV Field Seperator" />
+      <Label layoutX="163.0" layoutY="93.0" text="Mac Column" />
+      <Label layoutX="14.0" layoutY="18.0" text="CSV File Settings" />
+   </children>
+</AnchorPane>

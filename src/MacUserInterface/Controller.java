@@ -3,12 +3,20 @@ package MacUserInterface;
 import MacManager.MacManager;
 import Settings.Settings;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 //Controller of GUI lul
 public class Controller {
@@ -53,15 +61,20 @@ public class Controller {
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setTitle("Open CSV file (Selecting multiple files supported)");
 
         // Show open file dialog
-        File file = fileChooser.showOpenDialog(Main.primaryStage);
+        List<File> files = fileChooser.showOpenMultipleDialog(Main.primaryStage);
 
-        if (file != null) {
-            fileLabel.setText(file.getPath());
-            macManager.importFile(file.getPath());
-            stage = 1;
-            System.out.println(">> Opening " + file.getPath());
+        if (files != null && !files.isEmpty()) {
+            for (File file : files) {
+                if (file != null) {
+                    fileLabel.setText(file.getPath());
+                    macManager.importFile(file.getPath());
+                    stage = 1;
+                    System.out.println(">> Opening " + file.getPath());
+                }
+            }
         }
 
         updateButtons();
@@ -110,8 +123,7 @@ public class Controller {
         updateButtons();
     }
 
-    public void updateButtons()
-    {
+    public void updateButtons() {
         switch (stage) {
             case 0 -> {
                 bImport.setDisable(false);
@@ -141,8 +153,16 @@ public class Controller {
         updateButtons();
     }
 
-    public void openSettings() {
-        Settings.openFile(Settings.settingsPath);
+    public void openSettings() throws IOException {
+        Stage settingsStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
+        settingsStage.setTitle("Mac Manager");
+        settingsStage.setScene(new Scene(root, 420, 124));
+        settingsStage.setResizable(false);
+
+        settingsStage.initStyle(StageStyle.DECORATED);
+
+        settingsStage.show();
     }
 
     public void openHelp() {
@@ -178,5 +198,5 @@ public class Controller {
         }
 
      */
-    }
+}
 
