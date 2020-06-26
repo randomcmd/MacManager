@@ -166,7 +166,7 @@ public class Controller {
         Stage settingsStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
         settingsStage.setTitle("Mac Manager");
-        settingsStage.setScene(new Scene(root, 420, 124));
+        settingsStage.setScene(new Scene(root, 420, 264));
         settingsStage.setResizable(false);
 
         settingsStage.initStyle(StageStyle.UNDECORATED);

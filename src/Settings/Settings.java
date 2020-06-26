@@ -26,7 +26,6 @@ public class Settings {
     public static String dbUsername;
     public static String dbPassword;
     public static String dbDatabasename;
-    public static String dbURL;
     public static String dbTablename;
 
     Properties properties;
@@ -66,9 +65,6 @@ public class Settings {
 
             dbTablename = properties.getProperty("dbTablename");
             Debug.Log("dbTablename = " + dbTablename,1, DEBUGTYPE.DETAIL);
-
-            dbURL = properties.getProperty("dbURL");
-            Debug.Log("dbURL = " + dbURL,1, DEBUGTYPE.DETAIL);
         }
         catch (Exception ex) {
             Debug.Log("Error loading " + Settings.settingsPath,0,DEBUGTYPE.ERROR);

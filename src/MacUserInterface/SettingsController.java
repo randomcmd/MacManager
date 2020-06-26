@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class SettingsController{
+public class SettingsController {
 
     Settings settings = new Settings();
 
@@ -19,23 +19,34 @@ public class SettingsController{
 
     @FXML
     TextField tfMacColumn;
+
+    @FXML
+    TextField tfDBUsername;
+    @FXML
+    TextField tfDBPassword;
+    @FXML
+    TextField tfDBDatabasename;
+    @FXML
+    TextField tfDBTablename;
+
     @FXML
     private javafx.scene.control.Button closeButton2;
 
-    public void initialize()
-    {
+    public void initialize() {
         tfCSVFieldSeparator.setText(Settings.csvFieldSeperator);
         tfMacColumn.setText(String.valueOf(Settings.macColumn));
     }
 
-    public void updateButton()
-    {
-        if(validateInput()){bApplySettings.setDisable(false);}else{bApplySettings.setDisable(true);}
+    public void updateButton() {
+        if (validateInput()) {
+            bApplySettings.setDisable(false);
+        } else {
+            bApplySettings.setDisable(true);
+        }
     }
 
-    public boolean validateInput()
-    {
-        try{
+    public boolean validateInput() {
+        try {
             int num = Integer.parseInt(tfMacColumn.getText());
             return true;
         } catch (NumberFormatException e) {
@@ -43,22 +54,30 @@ public class SettingsController{
         }
     }
 
-    public void applySettings()
-    {
+    public void applySettings() {
         settings.setProperty("csvFieldSeperator", tfCSVFieldSeparator.getText());
-        settings.setProperty("macColumn",tfMacColumn.getText());
+        settings.setProperty("macColumn", tfMacColumn.getText());
+
+        if (tfDBUsername.getText() != null) settings.setProperty("dbUsername", tfDBUsername.getText());
+        if (tfDBPassword.getText() != null) settings.setProperty("dbPassword", tfDBPassword.getText());
+        if (tfDBDatabasename.getText() != null) settings.setProperty("dbDatabasename", tfDBDatabasename.getText());
+        if (tfDBTablename.getText() != null) settings.setProperty("dbTablename", tfDBTablename.getText());
         settings.saveSettings();
         settings.importSettings();
-        Debug.Log("Settings applied",0, DEBUGTYPE.SUCCESS);
-        Debug.Log("csvFieldSeperator = " + Settings.csvFieldSeperator,1,DEBUGTYPE.DETAIL);
-        Debug.Log("macColumn = " + Settings.macColumn,1,DEBUGTYPE.DETAIL);
+        Debug.Log("Settings applied", 0, DEBUGTYPE.SUCCESS);
+        Debug.Log("csvFieldSeperator = " + Settings.csvFieldSeperator, 1, DEBUGTYPE.DETAIL);
+        Debug.Log("macColumn = " + Settings.macColumn, 1, DEBUGTYPE.DETAIL);
+        Debug.Log("DBUsername = " + Settings.dbUsername, 1, DEBUGTYPE.DETAIL);
+        Debug.Log("DBPassword = " + Settings.dbPassword, 1, DEBUGTYPE.DETAIL);
+        Debug.Log("DBDatabasename = " + Settings.dbDatabasename, 1, DEBUGTYPE.DETAIL);
+        Debug.Log("DBTablename = " + Settings.dbTablename, 1, DEBUGTYPE.DETAIL);
     }
 
     @FXML
-    private void closeButtonAction2(){
+    private void closeButtonAction2() {
         //get a handle to the stage
         Stage stage = (Stage) closeButton2.getScene().getWindow();
-    //do what you have to do
+        //do what you have to do
         stage.close();
     }
 
