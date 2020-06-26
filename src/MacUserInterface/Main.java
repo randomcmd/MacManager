@@ -5,11 +5,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Screen;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+import java.awt.*;
+import java.io.File;
 
 public class Main extends Application {
 
@@ -31,6 +40,8 @@ public class Main extends Application {
         primaryStage.setTitle("Mac Manager");
         primaryStage.setScene(new Scene(root, 964, 500));
         primaryStage.setResizable(false);
+      /*  Image image = new Image("/UIResources/Apple.png");
+        primaryStage.getIcons().add(image);*/
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
