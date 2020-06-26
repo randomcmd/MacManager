@@ -3,9 +3,9 @@ package MacUserInterface;
 import Debug.*;
 import Settings.Settings;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class SettingsController{
 
@@ -15,14 +15,16 @@ public class SettingsController{
     Button bApplySettings;
 
     @FXML
-    TextField tfCSVFieldSeperator;
+    TextField tfCSVFieldSeparator;
 
     @FXML
     TextField tfMacColumn;
+    @FXML
+    private javafx.scene.control.Button closeButton2;
 
     public void initialize()
     {
-        tfCSVFieldSeperator.setText(Settings.csvFieldSeperator);
+        tfCSVFieldSeparator.setText(Settings.csvFieldSeperator);
         tfMacColumn.setText(String.valueOf(Settings.macColumn));
     }
 
@@ -43,7 +45,7 @@ public class SettingsController{
 
     public void applySettings()
     {
-        settings.setProperty("csvFieldSeperator",tfCSVFieldSeperator.getText());
+        settings.setProperty("csvFieldSeperator", tfCSVFieldSeparator.getText());
         settings.setProperty("macColumn",tfMacColumn.getText());
         settings.saveSettings();
         settings.importSettings();
@@ -51,4 +53,13 @@ public class SettingsController{
         Debug.Log("csvFieldSeperator = " + Settings.csvFieldSeperator,1,DEBUGTYPE.DETAIL);
         Debug.Log("macColumn = " + Settings.macColumn,1,DEBUGTYPE.DETAIL);
     }
+
+    @FXML
+    private void closeButtonAction2(){
+        //get a handle to the stage
+        Stage stage = (Stage) closeButton2.getScene().getWindow();
+    //do what you have to do
+        stage.close();
+    }
+
 }

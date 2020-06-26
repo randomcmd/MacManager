@@ -13,9 +13,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
+
 import java.util.List;
 
 //Controller of GUI lul
@@ -38,6 +40,10 @@ public class Controller {
     private Label lFailed;
     @FXML
     private Button bSettings;
+    @FXML
+    private javafx.scene.control.Button closeButton;
+    @FXML
+    private javafx.scene.control.Button minimizeButton;
 
     MacManager macManager;
     Settings settings;
@@ -153,6 +159,9 @@ public class Controller {
         updateButtons();
     }
 
+    static Stage settingsStage;
+    private double xOffset = 0;
+    private double yOffset = 0;
     public void openSettings() throws IOException {
         Stage settingsStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
@@ -160,9 +169,38 @@ public class Controller {
         settingsStage.setScene(new Scene(root, 420, 124));
         settingsStage.setResizable(false);
 
-        settingsStage.initStyle(StageStyle.DECORATED);
+        settingsStage.initStyle(StageStyle.UNDECORATED);
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                settingsStage.setX(event.getScreenX() - xOffset);
+                settingsStage.setY(event.getScreenY() - yOffset);
+            }
+        });
 
         settingsStage.show();
+    }
+
+    @FXML
+    private void closeButtonAction(){
+        // get a handle to the stage
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
+    @FXML
+    public void minimizeButtonAction() {
+        Stage stage=(Stage) minimizeButton.getScene().getWindow();
+        // is stage minimizable into task bar. (true | false)
+        stage.setIconified(true);
     }
 
     public void openHelp() {
