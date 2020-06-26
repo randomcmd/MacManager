@@ -1,5 +1,6 @@
 package MacManager;
 
+import ConnectToDatabase.ConnectToDatabase;
 import Debug.Debug;
 import MacExport.MacExport;
 import MacImport.MacImport;
@@ -46,6 +47,7 @@ public class MacManager {
         macImport = new MacImport();
         macValidation = new MacValidation();
         macExport = new MacExport();
+
 
         csvLinkedListString = new LinkedList<LinkedList<String>>();
         finalizedStringLinkedList = new LinkedList<String>();

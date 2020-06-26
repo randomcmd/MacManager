@@ -1,5 +1,6 @@
 package MacUserInterface;
 
+import ConnectToDatabase.ConnectToDatabase;
 import MacManager.MacManager;
 import Settings.Settings;
 import javafx.fxml.FXML;
@@ -47,6 +48,7 @@ public class Controller {
 
     MacManager macManager;
     Settings settings;
+    ConnectToDatabase database;
 
     File file;
     Label fileLabel = new Label();
@@ -56,7 +58,8 @@ public class Controller {
     public void initialize() {
         macManager = new MacManager();
         settings = new Settings();
-
+        database = new ConnectToDatabase();
+        //database.list = macManager.csvLinkedListString;
         updateButtons();
     }
 

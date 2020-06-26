@@ -4,30 +4,37 @@ import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.LinkedList;
-
+import Debug.*;
 
 public class ConnectToDatabase {
-    private static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+
+    public LinkedList<LinkedList<String>> list;
+    private static String url = "localhost";
+    //private static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static String user = "ngr";
     private static String pas = "ngrSecret";
-//private Connection con;
+    public Connection con;
 
 
     public ConnectToDatabase() {
-    ConnectToDatabase.run();
+    run();
 
 
     }
 
-    public static void run(){
-        insert(database(),createList());  
-        
+    public void run(){
+        checkdatabase();
+        //insert(checkdatabase(), list);
+        Debug.Log("mixed race couple? cringe");
     }
-    public static Connection database() {
+    public Connection checkdatabase() {
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, pas);
+            /*String sql = "INSERT INTO Test1 (Name) VALUES (8)";
+                PreparedStatement statement = con.prepareStatement(sql);
+                statement.executeUpdate();*/
 
         } catch (Exception e) {
             System.out.println(e);
@@ -38,7 +45,8 @@ public class ConnectToDatabase {
 
     }
 
-    public static void insert(Connection con, @NotNull LinkedList<LinkedList<String>> list) {
+    public static void insert(Connection con, LinkedList<LinkedList<String>> list) {
+        Debug.Log("ayoborororooro?",0,DEBUGTYPE.DETAIL);
         if (!list.isEmpty()) {
 
             try {
@@ -57,31 +65,9 @@ public class ConnectToDatabase {
         }
 
          else {
-            System.out.println("butwhytho?");
+            Debug.Log("butwhytho?",0,DEBUGTYPE.DETAIL);
         }
 
-
-    }
-
-
-
-    public static LinkedList<LinkedList<String>> createList() {
-        LinkedList<LinkedList<String>> list;
-        list = new LinkedList<LinkedList<String>>();
-        //list.add(new LinkedList<String>());
-        //list.add(new LinkedList<String>());
-        //list.addFirst(new LinkedList<String>());
-        list.add(1, new LinkedList<String>());
-        list.get(1).add("Q2");
-        list.get(1).add("Henry");
-        list.get(1).add("Scarf");
-        list.get(1).add("Test");
-        //list.get(2).add("aaa");
-        //list.get(2).add("aaa");
-        //list.get(2).add("bbb");
-        //list.get(2).add("ccc");
-
-        return list;
 
     }
 
