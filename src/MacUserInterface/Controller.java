@@ -207,9 +207,19 @@ public class Controller {
         // is stage minimizable into task bar. (true | false)
         stage.setIconified(true);
     }
+
+    ConnectToDatabase connectToDatabase;
+
     @FXML
     public void databaseButtonAction(){
-        ConnectToDatabase.run();
+
+        //Update list with correct values
+        macManager.updateCompleteDataSet();
+
+        //Create ConnectToDatabase and give it the list to upload
+        connectToDatabase = new ConnectToDatabase();
+        connectToDatabase.setListReference(macManager.csvLinkedListString);
+        connectToDatabase.run();
     }
 
 

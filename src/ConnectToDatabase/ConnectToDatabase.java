@@ -8,7 +8,7 @@ import Debug.*;
 
 public class ConnectToDatabase {
 
-    public LinkedList<LinkedList<String>> list;
+    LinkedList<LinkedList<String>> finalList; //tHIS IS LIST TO UPLOAD
     private static String url = "localhost";
     //private static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static String user = "ngr";
@@ -23,15 +23,17 @@ public class ConnectToDatabase {
     }
 
     public static void run(){
-        checkdatabase();
+        checkDatabase();
         //insert(checkdatabase(), list);
         Debug.Log("mixed race couple? cringe");
     }
-    public static Connection checkdatabase() {
+    public static Connection checkDatabase() {
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, pas);
+
+//            Please no arbitrary code execution thank you
             /*String sql = "INSERT INTO Test1 (Name) VALUES (8)";
                 PreparedStatement statement = con.prepareStatement(sql);
                 statement.executeUpdate();*/
@@ -39,7 +41,6 @@ public class ConnectToDatabase {
         } catch (Exception e) {
             System.out.println(e);
         }
-
 
         return con;
 
@@ -70,6 +71,8 @@ public class ConnectToDatabase {
 
 
     }
+
+    public void setListReference(LinkedList<LinkedList<String>> localList) { finalList = localList;}
 
 }
 
