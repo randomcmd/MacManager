@@ -45,6 +45,8 @@ public class Controller {
     private javafx.scene.control.Button closeButton;
     @FXML
     private javafx.scene.control.Button minimizeButton;
+    @FXML
+    private javafx.scene.control.Button databaseButton;
 
     MacManager macManager;
     Settings settings;
@@ -205,6 +207,11 @@ public class Controller {
         // is stage minimizable into task bar. (true | false)
         stage.setIconified(true);
     }
+    @FXML
+    public void databaseButtonAction(){
+        ConnectToDatabase.run();
+    }
+
 
     public void openHelp() {
         Settings.openFile(Settings.helpPath);

@@ -22,12 +22,12 @@ public class ConnectToDatabase {
 
     }
 
-    public void run(){
+    public static void run(){
         checkdatabase();
         //insert(checkdatabase(), list);
         Debug.Log("mixed race couple? cringe");
     }
-    public Connection checkdatabase() {
+    public static Connection checkdatabase() {
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
