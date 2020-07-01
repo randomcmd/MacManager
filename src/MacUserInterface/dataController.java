@@ -49,13 +49,13 @@ public class dataController {
         connectToDatabase = new ConnectToDatabase();
         connectToDatabase.insert(macManager.csvLinkedListString);
         dataLabel.setText("Erfolgreich");
-        /*if (connectToDatabase.hatgeklappt){
+        if (connectToDatabase.hatgeklappt){
 
-            // setze lable auf ja oder so
+            dataLabel.setText("Erfolgreich");
         }
         else {
-            //setze lable auf nein oder so
-        }*/
+            dataLabel.setText("You MAD!");
+        }
 
 
 
