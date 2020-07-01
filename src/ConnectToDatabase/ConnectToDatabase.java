@@ -52,6 +52,7 @@ public class ConnectToDatabase {
         } catch (Exception e) {
             Debug.Log("Could not connect...",1,DEBUGTYPE.ERROR);
             System.out.println(e);
+            return;
         }
 
         for (LinkedList<String> strings : list) { //Für jede äußere Liste
@@ -90,6 +91,7 @@ public class ConnectToDatabase {
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                         Debug.Log("Could not insert data into table",1,DEBUGTYPE.ERROR);
+                        return;
 
                     }
 
