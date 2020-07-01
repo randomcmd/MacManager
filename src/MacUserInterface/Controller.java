@@ -1,5 +1,6 @@
 package MacUserInterface;
 
+import ConnectToDatabase.ConnectToDatabase;
 import MacManager.MacManager;
 import Settings.Settings;
 import javafx.fxml.FXML;
@@ -44,9 +45,12 @@ public class Controller {
     private javafx.scene.control.Button closeButton;
     @FXML
     private javafx.scene.control.Button minimizeButton;
+    @FXML
+    private javafx.scene.control.Button databaseButton;
 
     MacManager macManager;
     Settings settings;
+    ConnectToDatabase database;
 
     File file;
     Label fileLabel = new Label();
@@ -56,7 +60,8 @@ public class Controller {
     public void initialize() {
         macManager = new MacManager();
         settings = new Settings();
-
+        database = new ConnectToDatabase();
+        //database.list = macManager.csvLinkedListString;
         updateButtons();
     }
 
@@ -166,7 +171,7 @@ public class Controller {
         Stage settingsStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
         settingsStage.setTitle("Mac Manager");
-        settingsStage.setScene(new Scene(root, 420, 264));
+        settingsStage.setScene(new Scene(root, 420, 263));
         settingsStage.setResizable(false);
 
         settingsStage.initStyle(StageStyle.UNDECORATED);
@@ -202,6 +207,21 @@ public class Controller {
         // is stage minimizable into task bar. (true | false)
         stage.setIconified(true);
     }
+
+    ConnectToDatabase connectToDatabase;
+
+    @FXML
+    public void databaseButtonAction(){
+
+        //Update list with correct values
+        macManager.updateCompleteDataSet();
+
+        //Create ConnectToDatabase and give it the list to upload
+        connectToDatabase = new ConnectToDatabase();
+        connectToDatabase.setListReference(macManager.csvLinkedListString);
+        connectToDatabase.run();
+    }
+
 
     public void openHelp() {
         Settings.openFile(Settings.helpPath);

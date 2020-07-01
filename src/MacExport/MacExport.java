@@ -19,7 +19,7 @@ public class MacExport {
             pr.close();
         } catch (Exception e) {
             e.printStackTrace();
-            Debug.Log("No such file exists.",1, DEBUGTYPE.ERROR);
+            Debug.Log("No such file exists.", 1, DEBUGTYPE.ERROR);
         }
     }
 
