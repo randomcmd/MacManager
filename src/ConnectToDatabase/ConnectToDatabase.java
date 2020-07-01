@@ -96,6 +96,8 @@ public class ConnectToDatabase {
                     }
 
                 }
+
+                Debug.Log("Finished uploading data",1,DEBUGTYPE.SUCCESS);
             }
 
 
