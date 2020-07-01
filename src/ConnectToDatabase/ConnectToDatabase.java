@@ -12,7 +12,7 @@ import Debug.*;
 public class ConnectToDatabase {
 
 
-    boolean hatgeklappt = false;
+    public static boolean hatgeklappt = false;
     private final static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 
