@@ -14,16 +14,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="500.0" maxWidth="964.0" minHeight="500.0" minWidth="964.0" prefHeight="500.0" prefWidth="964.0" style="-fx-background-color: linear-gradient(#2e2e2e, #2e2c27); -fx-border-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.Controller">
+<AnchorPane maxHeight="500.0" maxWidth="964.0" minHeight="500.0" minWidth="964.0" prefHeight="500.0" prefWidth="964.0" style="-fx-background-color: linear-gradient(#2e2e2e, #2e2c27); -fx-border-color: #ffbb1c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.Controller">
     <children>
         <VBox prefHeight="500.0" prefWidth="161.0" style="-fx-background-color: #ffa500;">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="308.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #fcc40a, #ffa500);" text="Mac Manager">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="308.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #ffbb1c, #ffa500);" text="Mac Manager">
                     <font>
                         <Font size="21.0" />
                     </font>
                 </Label>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #4a4a4a, #2e2c27); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Mac Manager" textFill="WHITE">
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #545454, #303030); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Mac Manager" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="37.0">
                             <image>
@@ -32,7 +32,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #4a4a4a, #2e2c27); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Data Base">
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #545454, #303030); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Data Base">
                     <textFill>WHITE</textFill>
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="37.0">
@@ -42,7 +42,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="bSettings" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#openSettings" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #4a4a4a, #2e2c27); -fx-border-color: orange; -fx-background-insets: 1; -fx-background-radius: 5;" text="Settings" textFill="WHITE">
+                <Button fx:id="bSettings" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#openSettings" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #545454, #303030); -fx-border-color: orange; -fx-background-insets: 1; -fx-background-radius: 5;" text="Settings" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="37.0">
                             <image>
@@ -51,7 +51,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#openHelp" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #4a4a4a, #2e2c27); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Help" textFill="WHITE">
+                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#openHelp" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #545454, #303030); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Help" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="37.0">
                             <image>

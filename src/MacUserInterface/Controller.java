@@ -203,6 +203,7 @@ public class Controller {
         stage.setIconified(true);
     }
 
+
     public void openHelp() {
         Settings.openFile(Settings.helpPath);
     }
