@@ -33,11 +33,9 @@ public class dataController {
     private Label dataLabel;
 
 
-    MacManager macManager;
     ConnectToDatabase connectToDatabase;
 
     public void initialize() {
-        macManager = new MacManager();
         connectToDatabase= new ConnectToDatabase();
     }
 
@@ -45,11 +43,10 @@ public class dataController {
     public void databaseButtonAction(){
         Debug.Log("Opening Database");
         //Update list with correct values
-        macManager.updateCompleteDataSet();
 
         //Create ConnectToDatabase and give it the list to upload
         connectToDatabase = new ConnectToDatabase();
-        connectToDatabase.insert(macManager.csvLinkedListString);
+        connectToDatabase.insert(MacManager.csvLinkedListString);
         if (connectToDatabase.hatgeklappt){
 
             dataLabel.setText("Erfolgreich");

@@ -13,7 +13,7 @@ public class ConnectToDatabase {
 
 
     public static boolean hatgeklappt = false;
-    private final static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private final static String url = "jdbc:mysql://myadmin." + Settings.dbUsername + ".bplaced.net:3306/" + Settings.dbDatabasename +"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 
     public void insert(LinkedList<LinkedList<String>> list) {
@@ -78,6 +78,8 @@ public class ConnectToDatabase {
                         if (i == (strings.size() + 1)) {
                             Debug.Log("Running SQL statement",1,DEBUGTYPE.DETAIL);
                             sql = "INSERT INTO " + Settings.dbTablename + "(Kurs, Name, Vorname, MAC, Grund) VALUES('" + kurs + "','" + nName + "','" + vName + "','" + mac + "','" + grund + "')"; //Sql statement für die Datenbank
+
+                            if(con.prepareStatement(sql) == null) return;
                             statement = con.prepareStatement(sql);
 
                             statement.executeUpdate(sql); //asuführen des Staements
