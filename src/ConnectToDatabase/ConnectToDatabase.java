@@ -11,9 +11,9 @@ import Debug.*;
 
 public class ConnectToDatabase {
 
-    LinkedList<LinkedList<String>> finalList; //tHIS IS LIST TO UPLOAD
+
     boolean hatgeklappt = false;
-    private static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private final static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 
     public ConnectToDatabase() {
@@ -40,20 +40,22 @@ public class ConnectToDatabase {
             alert.showAndWait();
 
             return;
+            //falls die Settings nicht richtig ausgefüllt wurden
         }
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, Settings.dbUsername, Settings.dbPassword);
             System.out.println("Verbunden");
+            //Verbindung zu Datenbank
         } catch (Exception e) {
             System.out.println(e);
         }
 
         //System.out.print(list)a;
 
-        for (LinkedList<String> strings : list) {
-            for (int i = 0; i <= (strings.size() + 1); i++) {
+        for (LinkedList<String> strings : list) { //Für jede äußere Liste
+            for (int i = 0; i <= (strings.size() + 1); i++) { //Jedes Element der inneren Liste wird in String gespeichert
                 switch (i) {
                     case 0 -> {
                         kurs = strings.get(i);
@@ -74,10 +76,10 @@ public class ConnectToDatabase {
                 if (strings.size() + 1 == i) {
                     try {
                         if (i == (strings.size() + 1)) {
-                            sql = "INSERT INTO " + Settings.dbTablename + "(Kurs, Name, Vorname, MAC, Grund) VALUES('" + kurs + "','" + nName + "','" + vName + "','" + mac + "','" + grund + "')";
+                            sql = "INSERT INTO " + Settings.dbTablename + "(Kurs, Name, Vorname, MAC, Grund) VALUES('" + kurs + "','" + nName + "','" + vName + "','" + mac + "','" + grund + "')"; //Sql statement für die Datenbank
                             statement = con.prepareStatement(sql);
 
-                            statement.executeUpdate(sql);
+                            statement.executeUpdate(sql); //asuführen des Staements
                             hatgeklappt = true;
 
                         }
