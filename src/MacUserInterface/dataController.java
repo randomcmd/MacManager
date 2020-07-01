@@ -1,6 +1,8 @@
 package MacUserInterface;
 
+
 import ConnectToDatabase.ConnectToDatabase;
+import Debug.Debug;
 import MacManager.MacManager;
 import Settings.Settings;
 import javafx.fxml.FXML;
@@ -30,25 +32,24 @@ public class dataController {
     @FXML
     private Label dataLabel;
 
-    ConnectToDatabase database;
+
     MacManager macManager;
     ConnectToDatabase connectToDatabase;
 
     public void initialize() {
         macManager = new MacManager();
-        database = new ConnectToDatabase();
+        connectToDatabase= new ConnectToDatabase();
     }
 
     @FXML
     public void databaseButtonAction(){
-
+        Debug.Log("Opening Database");
         //Update list with correct values
         macManager.updateCompleteDataSet();
 
         //Create ConnectToDatabase and give it the list to upload
         connectToDatabase = new ConnectToDatabase();
         connectToDatabase.insert(macManager.csvLinkedListString);
-        dataLabel.setText("Erfolgreich");
         if (connectToDatabase.hatgeklappt){
 
             dataLabel.setText("Erfolgreich");

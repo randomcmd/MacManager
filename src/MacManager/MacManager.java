@@ -35,7 +35,7 @@ public class MacManager {
     MacValidation macValidation;
     MacExport macExport;
 
-    public LinkedList<LinkedList<String>> csvLinkedListString;
+    public static LinkedList<LinkedList<String>> csvLinkedListString;
     public LinkedList<String> csvLinkedListMACParsed;
     public LinkedList<String> finalizedStringLinkedList;
 
