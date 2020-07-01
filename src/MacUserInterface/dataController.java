@@ -27,6 +27,8 @@ public class dataController {
     private javafx.scene.control.Button closeButton3;
     @FXML
     private javafx.scene.control.Button databaseButton;
+    @FXML
+    private Label dataLabel;
 
     ConnectToDatabase database;
     MacManager macManager;
@@ -46,7 +48,9 @@ public class dataController {
         //Create ConnectToDatabase and give it the list to upload
         connectToDatabase = new ConnectToDatabase();
         connectToDatabase.insert(macManager.csvLinkedListString);
+        dataLabel.setText("Erfolgreich");
         /*if (connectToDatabase.hatgeklappt){
+
             // setze lable auf ja oder so
         }
         else {
