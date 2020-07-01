@@ -23,7 +23,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#databaseButtonAction" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #545454, #303030); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Data Base">
+                <Button fx:id="dataButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#openData" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #545454, #303030); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Data Base">
                     <textFill>WHITE</textFill>
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="37.0">

@@ -47,7 +47,7 @@ public class Controller {
     @FXML
     private javafx.scene.control.Button minimizeButton;
     @FXML
-    private javafx.scene.control.Button databaseButton;
+    private javafx.scene.control.Button dataButton;
 
     MacManager macManager;
     Settings settings;
@@ -194,6 +194,35 @@ public class Controller {
         settingsStage.show();
     }
 
+    static Stage dataStage;
+    private double xOffset2 = 0;
+    private double yOffset2 = 0;
+    public void openData() throws IOException {
+        Stage dataStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("data.fxml"));
+        dataStage.setTitle("Mac Manager");
+        dataStage.setScene(new Scene(root, 423, 191));
+        dataStage.setResizable(false);
+
+        dataStage.initStyle(StageStyle.UNDECORATED);
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset2 = event.getSceneX();
+                yOffset2 = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dataStage.setX(event.getScreenX() - xOffset2);
+                dataStage.setY(event.getScreenY() - yOffset2);
+            }
+        });
+
+        dataStage.show();
+    }
+
     @FXML
     private void closeButtonAction(){
         // get a handle to the stage
@@ -209,18 +238,7 @@ public class Controller {
         stage.setIconified(true);
     }
 
-    ConnectToDatabase connectToDatabase;
 
-    @FXML
-    public void databaseButtonAction(){
-        Debug.Log("Opening Database");
-        //Update list with correct values
-        macManager.updateCompleteDataSet();
-
-        //Create ConnectToDatabase and give it the list to upload
-        connectToDatabase = new ConnectToDatabase();
-        connectToDatabase.insert(macManager.csvLinkedListString);
-    }
 
 
     public void openHelp() {
