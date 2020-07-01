@@ -221,7 +221,7 @@ public class Controller {
         connectToDatabase.insert(macManager.csvLinkedListString);
     }
 
-
+// alla
     public void openHelp() {
         Settings.openFile(Settings.helpPath);
     }
