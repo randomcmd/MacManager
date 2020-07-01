@@ -41,7 +41,6 @@ public class dataController {
 
     @FXML
     public void databaseButtonAction(){
-        Debug.Log("Opening Database");
         //Update list with correct values
 
         //Create ConnectToDatabase and give it the list to upload
