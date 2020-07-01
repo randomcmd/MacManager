@@ -1,6 +1,8 @@
 package ConnectToDatabase;
 
 import Settings.Settings;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
@@ -10,6 +12,7 @@ import Debug.*;
 public class ConnectToDatabase {
 
     LinkedList<LinkedList<String>> finalList; //tHIS IS LIST TO UPLOAD
+    boolean hatgeklappt = false;
     private static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 
@@ -29,6 +32,15 @@ public class ConnectToDatabase {
         String sql = null;
         int size = list.size();
 
+
+
+        if(Settings.dbUsername.isEmpty()|| Settings.dbPassword.isEmpty()|| Settings.dbDatabasename.isEmpty() || Settings.dbTablename.isEmpty())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Settings");
+            alert.showAndWait();
+
+            return;
+        }
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -66,6 +78,7 @@ public class ConnectToDatabase {
                             statement = con.prepareStatement(sql);
 
                             statement.executeUpdate(sql);
+                            hatgeklappt = true;
 
                         }
                     } catch (SQLException throwables) {

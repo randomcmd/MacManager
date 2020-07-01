@@ -1,6 +1,7 @@
 package MacUserInterface;
 
 import ConnectToDatabase.ConnectToDatabase;
+import Debug.Debug;
 import MacManager.MacManager;
 import Settings.Settings;
 import javafx.fxml.FXML;
@@ -212,7 +213,7 @@ public class Controller {
 
     @FXML
     public void databaseButtonAction(){
-
+        Debug.Log("Opening Database");
         //Update list with correct values
         macManager.updateCompleteDataSet();
 
@@ -221,7 +222,7 @@ public class Controller {
         connectToDatabase.insert(macManager.csvLinkedListString);
     }
 
-// alla
+
     public void openHelp() {
         Settings.openFile(Settings.helpPath);
     }
