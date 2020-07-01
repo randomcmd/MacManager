@@ -219,7 +219,7 @@ public class Controller {
         //Create ConnectToDatabase and give it the list to upload
         connectToDatabase = new ConnectToDatabase();
         connectToDatabase.setListReference(macManager.csvLinkedListString);
-        connectToDatabase.run();
+        connectToDatabase.insert(macManager.csvLinkedListString);
     }
 
 
