@@ -50,7 +50,7 @@ public class ConnectToDatabase {
             System.out.println(e);
         }
 
-        //System.out.print(list);
+        //System.out.print(list)a;
 
         for (LinkedList<String> strings : list) {
             for (int i = 0; i <= (strings.size() + 1); i++) {
