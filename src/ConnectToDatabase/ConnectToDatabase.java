@@ -16,12 +16,8 @@ public class ConnectToDatabase {
     private final static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 
-    public ConnectToDatabase() {
-
-
-    }
-
     public void insert(LinkedList<LinkedList<String>> list) {
+        Debug.Log("Connecting to database",0,DEBUGTYPE.SUCCESS);
         Connection con = null;
         PreparedStatement statement = null;
         String kurs = null;
@@ -44,15 +40,15 @@ public class ConnectToDatabase {
         }
 
         try {
+            Debug.Log("Connecting...",1,DEBUGTYPE.DETAIL);
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, Settings.dbUsername, Settings.dbPassword);
             System.out.println("Verbunden");
             //Verbindung zu Datenbank
         } catch (Exception e) {
+            Debug.Log("Could not connect...",1,DEBUGTYPE.DETAIL);
             System.out.println(e);
         }
-
-        //System.out.print(list)a;
 
         for (LinkedList<String> strings : list) { //Für jede äußere Liste
             for (int i = 0; i <= (strings.size() + 1); i++) { //Jedes Element der inneren Liste wird in String gespeichert
@@ -76,16 +72,18 @@ public class ConnectToDatabase {
                 if (strings.size() + 1 == i) {
                     try {
                         if (i == (strings.size() + 1)) {
+                            Debug.Log("Running SQL statement",1,DEBUGTYPE.DETAIL);
                             sql = "INSERT INTO " + Settings.dbTablename + "(Kurs, Name, Vorname, MAC, Grund) VALUES('" + kurs + "','" + nName + "','" + vName + "','" + mac + "','" + grund + "')"; //Sql statement für die Datenbank
                             statement = con.prepareStatement(sql);
 
                             statement.executeUpdate(sql); //asuführen des Staements
                             hatgeklappt = true;
+                            Debug.Log("Inserted data into table",1,DEBUGTYPE.DETAIL);
 
                         }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
-
+                        Debug.Log("Could not insert data into table",1,DEBUGTYPE.DETAIL);
 
                     }
 

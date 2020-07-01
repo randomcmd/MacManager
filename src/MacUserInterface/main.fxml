@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="500.0" maxWidth="964.0" minHeight="500.0" minWidth="964.0" prefHeight="500.0" prefWidth="964.0" style="-fx-background-color: linear-gradient(#2e2e2e, #2e2c27); -fx-border-color: #ffbb1c;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.Controller">
+<AnchorPane maxHeight="500.0" maxWidth="964.0" minHeight="500.0" minWidth="964.0" prefHeight="500.0" prefWidth="964.0" style="-fx-background-color: linear-gradient(#2e2e2e, #2e2c27); -fx-border-color: linear-gradient( #fcc40a, #ffa500);" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MacUserInterface.Controller">
     <children>
         <VBox prefHeight="500.0" prefWidth="161.0" style="-fx-background-color: #ffa500;">
             <children>

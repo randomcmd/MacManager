@@ -36,6 +36,11 @@ public class SettingsController{
     {
         tfCSVFieldSeparator.setText(Settings.csvFieldSeperator);
         tfMacColumn.setText(String.valueOf(Settings.macColumn));
+        tfDBUsername.setText(String.valueOf(Settings.dbUsername));
+        tfDBPassword.setText(String.valueOf(Settings.dbPassword));
+        tfDBTablename.setText(String.valueOf(Settings.dbTablename));
+        tfDBDatabasename.setText(String.valueOf(Settings.dbDatabasename));
+
     }
 
     public void updateButton()
