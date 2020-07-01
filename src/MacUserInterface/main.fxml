@@ -32,7 +32,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #545454, #303030); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Data Base">
+                <Button fx:id="dataButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#openData" prefHeight="64.0" prefWidth="161.0" style="-fx-background-color: linear-gradient( #545454, #303030); -fx-border-color: orange; -fx-background-radius: 5; -fx-background-insets: 1;" text="Data Base">
                     <textFill>WHITE</textFill>
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="37.0">
@@ -130,7 +130,7 @@
                 </Label>
             </children>
         </GridPane>
-        <Text fill="WHITE" layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version Beta 2.7" textAlignment="CENTER" wrappingWidth="804.0" />
+        <Text fill="WHITE" layoutX="161.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Version 1.0" textAlignment="CENTER" wrappingWidth="804.0" />
         <Button fx:id="closeButton" layoutX="934.0" layoutY="15.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: linear-gradient(ff4242, a30000); -fx-background-insets: -1.4, 0; -fx-background-radius: 16.4, 15; -fx-border-radius: 15; -fx-border-width: 2; -fx-padding: 0;" />
         <Button layoutX="909.0" layoutY="15.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: linear-gradient(fff717, d1af04); -fx-background-radius: 16.4, 15; -fx-background-insets: -1.4, 0; -fx-border-insets: 15; -fx-border-width: 2; -fx-padding: 0;" />
         <Button fx:id="minimizeButton" layoutX="884.0" layoutY="15.0" mnemonicParsing="false" onAction="#minimizeButtonAction" prefHeight="17.0" prefWidth="16.0" style="-fx-background-color: linear-gradient(lime, green); -fx-background-insets: -1.4, 0; -fx-background-radius: 16.4, 15; -fx-border-radius: 15; -fx-border-width: 2; -fx-padding: 0;" textAlignment="CENTER" textFill="WHITE" />
