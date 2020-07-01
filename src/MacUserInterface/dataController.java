@@ -46,6 +46,13 @@ public class dataController {
         //Create ConnectToDatabase and give it the list to upload
         connectToDatabase = new ConnectToDatabase();
         connectToDatabase.insert(macManager.csvLinkedListString);
+        /*if (connectToDatabase.hatgeklappt){
+            // setze lable auf ja oder so
+        }
+        else {
+            //setze lable auf nein oder so
+        }*/
+
 
 
     }
