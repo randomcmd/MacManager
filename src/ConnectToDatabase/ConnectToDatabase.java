@@ -32,6 +32,7 @@ public class ConnectToDatabase {
 
         if(Settings.dbUsername.isEmpty()|| Settings.dbPassword.isEmpty()|| Settings.dbDatabasename.isEmpty() || Settings.dbTablename.isEmpty())
         {
+            Debug.Log("Invalid Settings",1,DEBUGTYPE.DETAIL);
             Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Settings");
             alert.showAndWait();
 
@@ -39,14 +40,17 @@ public class ConnectToDatabase {
             //falls die Settings nicht richtig ausgefüllt wurden
         }
 
+        if(list == null || list.isEmpty()) {Debug.Log("Data is empty",1,DEBUGTYPE.ERROR);return;}
+
+
         try {
             Debug.Log("Connecting...",1,DEBUGTYPE.DETAIL);
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, Settings.dbUsername, Settings.dbPassword);
-            System.out.println("Verbunden");
+            Debug.Log("Connected",1,DEBUGTYPE.DETAIL);
             //Verbindung zu Datenbank
         } catch (Exception e) {
-            Debug.Log("Could not connect...",1,DEBUGTYPE.DETAIL);
+            Debug.Log("Could not connect...",1,DEBUGTYPE.ERROR);
             System.out.println(e);
         }
 
@@ -83,7 +87,7 @@ public class ConnectToDatabase {
                         }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
-                        Debug.Log("Could not insert data into table",1,DEBUGTYPE.DETAIL);
+                        Debug.Log("Could not insert data into table",1,DEBUGTYPE.ERROR);
 
                     }
 
