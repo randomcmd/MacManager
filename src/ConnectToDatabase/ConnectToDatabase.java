@@ -1,5 +1,6 @@
 package ConnectToDatabase;
 
+import Settings.Settings;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
@@ -10,10 +11,6 @@ public class ConnectToDatabase {
 
     LinkedList<LinkedList<String>> finalList; //tHIS IS LIST TO UPLOAD
     private static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private static String user = "ngr";
-    private static String pas = "ngrSecret";
-    private static String dname = "Test1";
-
 
 
     public ConnectToDatabase() {
@@ -21,20 +18,21 @@ public class ConnectToDatabase {
 
     }
 
-    public void insert(LinkedList<LinkedList<String>> list){
+    public void insert(LinkedList<LinkedList<String>> list) {
         Connection con = null;
         PreparedStatement statement = null;
-        String Kurs = null;
-        String Nname = null;
-        String Vname = null;
-        String MAC = null;
-        String Grund = null;
+        String kurs = null;
+        String nName = null;
+        String vName = null;
+        String mac = null;
+        String grund = null;
         String sql = null;
+        int size = list.size();
 
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, pas);
+            con = DriverManager.getConnection(url, Settings.dbUsername, Settings.dbPassword);
             System.out.println("Verbunden");
         } catch (Exception e) {
             System.out.println(e);
@@ -42,54 +40,46 @@ public class ConnectToDatabase {
 
         //System.out.print(list);
 
-       for(LinkedList<String> strings : list) {
-            for(int i = 0; i <= (strings.size() +1); i++) {
-                if (i == 0) {
-                    Kurs = strings.get(i);
+        for (LinkedList<String> strings : list) {
+            for (int i = 0; i <= (strings.size() + 1); i++) {
+                switch (i) {
+                    case 0 -> {
+                        kurs = strings.get(i);
+                    }
+                    case 1 -> {
+                        nName = strings.get(i);
+                    }
+                    case 2 -> {
+                        vName = strings.get(i);
+                    }
+                    case 3 -> {
+                        mac = strings.get(i);
+                    }
+                    case 4 -> {
+                        grund = strings.get(i);
+                    }
                 }
-                if (i == 1) {
-                    Nname = strings.get(i);
-                }
-                if (i == 2) {
-                    Vname = strings.get(i);
-                }
-                if (i == 3) {
-                    MAC = strings.get(i);
-                }
-                if (i == 4) {
-                    Grund = strings.get(i);
-                }
-                try {
-                    if (i == (strings.size() +1)) {
-                        sql = "INSERT INTO "+dname+"(Kurs, Name, Vorname, MAC, Grund) VALUES('"+Kurs+"','"+Nname+"','"+Vname+"','"+MAC+"','"+Grund+"')";
-                        statement = con.prepareStatement(sql);
-                        //statement.setString(1, dname);
-                        /*statement.setString(1, Kurs);
-                        statement.setString(2, Nname);
-                        statement.setString(3, Vname);
-                        statement.setString(4, MAC);
-                        statement.setString(5, Grund);*/
-                        statement.executeUpdate(sql);
+                if (strings.size() + 1 == i) {
+                    try {
+                        if (i == (strings.size() + 1)) {
+                            sql = "INSERT INTO " + Settings.dbTablename + "(Kurs, Name, Vorname, MAC, Grund) VALUES('" + kurs + "','" + nName + "','" + vName + "','" + mac + "','" + grund + "')";
+                            statement = con.prepareStatement(sql);
+
+                            statement.executeUpdate(sql);
+
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+
 
                     }
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
 
+                }
             }
 
 
-       }
-
-            
-
-
+        }
     }
-
-
-
-    public void setListReference(LinkedList<LinkedList<String>> localList) {finalList = localList;}
-
 }
 
 
