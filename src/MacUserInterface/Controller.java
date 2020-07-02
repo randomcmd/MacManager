@@ -4,10 +4,12 @@ import ConnectToDatabase.ConnectToDatabase;
 import Debug.Debug;
 import MacManager.MacManager;
 import Settings.Settings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -48,6 +50,10 @@ public class Controller {
     private javafx.scene.control.Button minimizeButton;
     @FXML
     private javafx.scene.control.Button dataButton;
+    @FXML
+    private javafx.scene.control.Button macButton;
+
+    public void macButtonAction(ActionEvent evt) {showMacButton();}
 
     MacManager macManager;
     Settings settings;
@@ -238,7 +244,13 @@ public class Controller {
         stage.setIconified(true);
     }
 
-
+    private void showMacButton() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error 404");
+        alert.setHeaderText("Hier gibt es nichts zu sehen");
+        alert.setContentText("Bitte gehen sie weiter");
+        alert.showAndWait();
+    }
 
 
     public void openHelp() {

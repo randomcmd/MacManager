@@ -33,19 +33,22 @@ public class dataController {
     private Label dataLabel;
 
 
+    MacManager macManager;
     ConnectToDatabase connectToDatabase;
 
     public void initialize() {
+        macManager = new MacManager();
         connectToDatabase= new ConnectToDatabase();
     }
 
     @FXML
     public void databaseButtonAction(){
         //Update list with correct values
+        macManager.updateCompleteDataSet();
 
         //Create ConnectToDatabase and give it the list to upload
         connectToDatabase = new ConnectToDatabase();
-        connectToDatabase.insert(MacManager.csvLinkedListString);
+        connectToDatabase.insert(macManager.csvLinkedListString);
         if (connectToDatabase.hatgeklappt){
 
             dataLabel.setText("Erfolgreich");
