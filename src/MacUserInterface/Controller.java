@@ -1,14 +1,28 @@
 package MacUserInterface;
 
+import ConnectToDatabase.ConnectToDatabase;
+import Debug.Debug;
 import MacManager.MacManager;
 import Settings.Settings;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 import java.io.File;
+import java.io.IOException;
+
+import java.util.List;
 
 //Controller of GUI lul
 public class Controller {
@@ -30,9 +44,20 @@ public class Controller {
     private Label lFailed;
     @FXML
     private Button bSettings;
+    @FXML
+    private javafx.scene.control.Button closeButton;
+    @FXML
+    private javafx.scene.control.Button minimizeButton;
+    @FXML
+    private javafx.scene.control.Button dataButton;
+    @FXML
+    private javafx.scene.control.Button macButton;
+
+    public void macButtonAction(ActionEvent evt) {showMacButton();}
 
     MacManager macManager;
     Settings settings;
+    ConnectToDatabase database;
 
     File file;
     Label fileLabel = new Label();
@@ -42,7 +67,8 @@ public class Controller {
     public void initialize() {
         macManager = new MacManager();
         settings = new Settings();
-
+        database = new ConnectToDatabase();
+        //database.list = macManager.csvLinkedListString;
         updateButtons();
     }
 
@@ -53,15 +79,20 @@ public class Controller {
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
         fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setTitle("Open CSV file (Selecting multiple files supported)");
 
         // Show open file dialog
-        File file = fileChooser.showOpenDialog(Main.primaryStage);
+        List<File> files = fileChooser.showOpenMultipleDialog(Main.primaryStage);
 
-        if (file != null) {
-            fileLabel.setText(file.getPath());
-            macManager.importFile(file.getPath());
-            stage = 1;
-            System.out.println(">> Opening " + file.getPath());
+        if (files != null && !files.isEmpty()) {
+            for (File file : files) {
+                if (file != null) {
+                    fileLabel.setText(file.getPath());
+                    macManager.importFile(file.getPath());
+                    stage = 1;
+                    System.out.println(">> Opening " + file.getPath());
+                }
+            }
         }
 
         updateButtons();
@@ -110,8 +141,7 @@ public class Controller {
         updateButtons();
     }
 
-    public void updateButtons()
-    {
+    public void updateButtons() {
         switch (stage) {
             case 0 -> {
                 bImport.setDisable(false);
@@ -141,9 +171,87 @@ public class Controller {
         updateButtons();
     }
 
-    public void openSettings() {
-        Settings.openFile(Settings.settingsPath);
+    static Stage settingsStage;
+    private double xOffset = 0;
+    private double yOffset = 0;
+    public void openSettings() throws IOException {
+        Stage settingsStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
+        settingsStage.setTitle("Mac Manager");
+        settingsStage.setScene(new Scene(root, 420, 263));
+        settingsStage.setResizable(false);
+
+        settingsStage.initStyle(StageStyle.UNDECORATED);
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                settingsStage.setX(event.getScreenX() - xOffset);
+                settingsStage.setY(event.getScreenY() - yOffset);
+            }
+        });
+
+        settingsStage.show();
     }
+
+    static Stage dataStage;
+    private double xOffset2 = 0;
+    private double yOffset2 = 0;
+    public void openData() throws IOException {
+        Stage dataStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("data.fxml"));
+        dataStage.setTitle("Mac Manager");
+        dataStage.setScene(new Scene(root, 423, 191));
+        dataStage.setResizable(false);
+
+        dataStage.initStyle(StageStyle.UNDECORATED);
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset2 = event.getSceneX();
+                yOffset2 = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dataStage.setX(event.getScreenX() - xOffset2);
+                dataStage.setY(event.getScreenY() - yOffset2);
+            }
+        });
+
+        dataStage.show();
+    }
+
+    @FXML
+    private void closeButtonAction(){
+        // get a handle to the stage
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
+    @FXML
+    public void minimizeButtonAction() {
+        Stage stage=(Stage) minimizeButton.getScene().getWindow();
+        // is stage minimizable into task bar. (true | false)
+        stage.setIconified(true);
+    }
+
+    private void showMacButton() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error 404");
+        alert.setHeaderText("Hier gibt es nichts zu sehen");
+        alert.setContentText("Bitte gehen sie weiter");
+        alert.showAndWait();
+    }
+
 
     public void openHelp() {
         Settings.openFile(Settings.helpPath);
@@ -178,5 +286,5 @@ public class Controller {
         }
 
      */
-    }
+}
 

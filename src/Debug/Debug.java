@@ -4,17 +4,19 @@ public class Debug {
 
     public static String debugLog;
 
+    //Basic Debug Log
     public static void Log(String input)
     {
         System.out.println(input);
         debugLog = debugLog + System.lineSeparator() + input;
     }
 
+    //Fancy Debug Log
     public static void Log(String input, Integer offset, DEBUGTYPE type)
     {
         switch(type)
         {
-            case SUCSESS: input = ">> " + input; break;
+            case SUCCESS: input = ">> " + input; break;
             case ERROR: input = "!! " + input;
             default: break;
         }

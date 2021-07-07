@@ -1,90 +1,108 @@
 package ConnectToDatabase;
 
+import Settings.Settings;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.LinkedList;
-
+import Debug.*;
 
 public class ConnectToDatabase {
-    private static String url = "jdbc:mysql://myadmin.ngr.bplaced.net:3306/ngr_macfilter?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private static String user = "ngr";
-    private static String pas = "ngrSecret";
-//private Connection con;
 
 
-    public ConnectToDatabase() {
-    ConnectToDatabase.run();
+    public static boolean hatgeklappt = false;
+    private final static String url = "jdbc:mysql://myadmin." + Settings.dbUsername + ".bplaced.net:3306/" + Settings.dbDatabasename +"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 
-    }
-
-    public static void run(){
-        insert(database(),createList());  
-        
-    }
-    public static Connection database() {
+    public void insert(LinkedList<LinkedList<String>> list) {
+        Debug.Log("Connecting to database",0,DEBUGTYPE.SUCCESS);
         Connection con = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(url, user, pas);
+        PreparedStatement statement = null;
+        String kurs = null;
+        String nName = null;
+        String vName = null;
+        String mac = null;
+        String grund = null;
+        String sql = null;
+        int size = list.size();
 
-        } catch (Exception e) {
-            System.out.println(e);
+
+
+        if(Settings.dbUsername.isEmpty()|| Settings.dbPassword.isEmpty()|| Settings.dbDatabasename.isEmpty() || Settings.dbTablename.isEmpty())
+        {
+            Debug.Log("Invalid Settings",1,DEBUGTYPE.DETAIL);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Settings");
+            alert.showAndWait();
+
+            return;
+            //falls die Settings nicht richtig ausgefüllt wurden
         }
 
+        if(list == null || list.isEmpty()) {Debug.Log("Data is empty",1,DEBUGTYPE.ERROR);return;}
 
-        return con;
 
-    }
+        try {
+            Debug.Log("Connecting...",1,DEBUGTYPE.DETAIL);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url, Settings.dbUsername, Settings.dbPassword);
+            Debug.Log("Connected",1,DEBUGTYPE.DETAIL);
+            //Verbindung zu Datenbank
+        } catch (Exception e) {
+            Debug.Log("Could not connect...",1,DEBUGTYPE.ERROR);
+            System.out.println(e);
+            return;
+        }
 
-    public static void insert(Connection con, @NotNull LinkedList<LinkedList<String>> list) {
-        if (!list.isEmpty()) {
-
-            try {
-                for (LinkedList<String> sublist : list) {
-                    for (String s : sublist){
-                     System.out.println(s);
-
+        for (LinkedList<String> strings : list) { //Für jede äußere Liste
+            for (int i = 0; i <= (strings.size() + 1); i++) { //Jedes Element der inneren Liste wird in String gespeichert
+                switch (i) {
+                    case 0 -> {
+                        kurs = strings.get(i);
+                    }
+                    case 1 -> {
+                        nName = strings.get(i);
+                    }
+                    case 2 -> {
+                        vName = strings.get(i);
+                    }
+                    case 3 -> {
+                        mac = strings.get(i);
+                    }
+                    case 4 -> {
+                        grund = strings.get(i);
                     }
                 }
-                /*String sql = "INSERT INTO Test1 (Name) VALUES (8)";
-                PreparedStatement statement = con.prepareStatement(sql);
-                statement.executeUpdate();*/
-            } catch (Exception e) {
-                System.out.println(e);
+                if (strings.size() + 1 == i) {
+                    try {
+                        if (i == (strings.size() + 1)) {
+                            Debug.Log("Running SQL statement",1,DEBUGTYPE.DETAIL);
+                            sql = "INSERT INTO " + Settings.dbTablename + "(Kurs, Name, Vorname, MAC, Grund) VALUES('" + kurs + "','" + nName + "','" + vName + "','" + mac + "','" + grund + "')"; //Sql statement für die Datenbank
+
+                            if(con.prepareStatement(sql) == null) return;
+                            statement = con.prepareStatement(sql);
+
+                            statement.executeUpdate(sql); //asuführen des Staements
+                            hatgeklappt = true;
+                            Debug.Log("Inserted data into table",1,DEBUGTYPE.DETAIL);
+
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                        Debug.Log("Could not insert data into table",1,DEBUGTYPE.ERROR);
+                        return;
+
+                    }
+
+                }
+
+                Debug.Log("Finished uploading data",1,DEBUGTYPE.SUCCESS);
             }
+
+
         }
-
-         else {
-            System.out.println("butwhytho?");
-        }
-
-
     }
-
-
-
-    public static LinkedList<LinkedList<String>> createList() {
-        LinkedList<LinkedList<String>> list;
-        list = new LinkedList<LinkedList<String>>();
-        //list.add(new LinkedList<String>());
-        //list.add(new LinkedList<String>());
-        //list.addFirst(new LinkedList<String>());
-        list.add(1, new LinkedList<String>());
-        list.get(1).add("Q2");
-        list.get(1).add("Henry");
-        list.get(1).add("Scarf");
-        list.get(1).add("Test");
-        //list.get(2).add("aaa");
-        //list.get(2).add("aaa");
-        //list.get(2).add("bbb");
-        //list.get(2).add("ccc");
-
-        return list;
-
-    }
-
 }
 
 
@@ -95,95 +113,6 @@ public class ConnectToDatabase {
 
 
 
-
-
-
-
-
-   /* public void insert(String datpfad, Connection con) {
-        String filePath = "datpfad";
-        File file = new File(filePath);
-        String line;
-        try{
-            FileInputStream fis = new FileInputStream(file);
-            InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
-            BufferedReader br = new BufferedReader(isr);
-            if(file.isFile()) {
-                while((line = br.readLine()) != null){
-                    String sql = "INSERT INTO Test1 (Name) values (8)";
-                    PreparedStatement statement = con.prepareStatement(sql);
-                    statement.executeUpdate();
-
-
-                }
-
-            }
-            else System.out.println("WHY");
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*public void insert(String datName, Connection con){
-        Scanner scan = null;
-        try {
-            scan = new Scanner(new File("C:\\Users\\henry\\Desktop\\yo.txt"));
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while (scan.hasNext()) {
-
-
-            try {
-                String sql = "INSERT INTO Test1 (MAC) values (scan.nextLine())";
-                PreparedStatement statement = con.prepareStatement(sql);
-                statement.executeUpdate();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-        scan.close();
-
-
-
-
-    }*/
 
 
 
